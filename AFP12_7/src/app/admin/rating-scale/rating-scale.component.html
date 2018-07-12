@@ -1,0 +1,76 @@
+<!--  page-wrapper -->
+<div id="page-wrapper">
+    <div class="row">
+         <!-- page header -->
+        <div class="col-lg-12">
+            <h1 class="page-header">{{header}} Rating Scale</h1>
+        </div>
+        <!--end page header -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Elements -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Rating Scale
+                    <div class="btn-group pull-right add-right">
+                         <a routerLink="/admin/rating-scale/list" class="btn btn-danger btn-add">
+                         <i class="fa fa-reply fa-fw"></i> Back
+                         </a>
+                   </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <!--<div class="col-lg-12">-->
+                            <form class="form-validate" #ratingscaleForm="ngForm" (ngSubmit)="addRatingScale(ratingscaleForm)">
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Rating Scale</label>
+                                    <input type="text" class="form-control" #Name="ngModel" [(ngModel)]="ratingscaleEntity.Name" name="Name" pattern="[a-zA-Z ]{2,}" maxlength="100" [ngClass]="{red_border: (Name.dirty && Name.invalid) || (Name.pristine && submitted)}" required/>  
+                                    <span class="error_span" *ngIf="(Name.dirty && Name.invalid) || (Name.pristine && submitted)"> 
+                                      <span *ngIf="Name.errors.required || (Name.pristine && submitted)">Please enter Rating Scale</span>
+                                      <span *ngIf="Name.errors && Name.errors.pattern">Please enter valid Rating Scale</span>
+                                  </span>
+                                  </div>
+
+                                  <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Description</label>
+                                    <input type="text" class="form-control" #Description="ngModel" [(ngModel)]="ratingscaleEntity.Description" name="Description" pattern="[a-zA-Z,'./ ]{2,}" [ngClass]="{red_border: (Description.dirty && Description.invalid) || (Description.pristine && submitted)}" required>                              
+                                    <span class="error_span" *ngIf="(Description.dirty && Description.invalid) || (Description.pristine && submitted)"> 
+                                      <span *ngIf="Description.errors.required || (Description.pristine && submitted)">Please enter Description</span>
+                                      <span *ngIf="Description.errors && Description.errors.pattern">Please enter valid Description</span>
+                                    </span>
+                                </div>
+                                  
+                                  <div class="clearfix"></div>
+
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Active?</label>                                    
+                              <br>
+                              <div class="radio_box">
+                                <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="ratingscaleEntity.IsActive" required/>
+                                <label for="role1">Yes</label>
+                              </div>
+                              <div class="radio_box">
+                                <input type="radio" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="ratingscaleEntity.IsActive" required/>
+                                <label for="role2">No </label>
+                              </div><br>
+                              <span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+                                  <span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select Active Status</span>
+                                </span>
+  
+                                </div>
+                              <div class="clearfix"></div>
+                              <div class="form-btn">
+                                <button type="submit" [disabled]="btn_disable" class="btn sub-btn"><span>Submit</span></button>
+                                <button type="button" *ngIf="ratingscaleEntity.RatingScaleId==0" (click)="clearForm(ratingscaleForm)" class="btn res-btn"><span>Clear</span></button>
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+                <!--</div>-->
+            </div>
+             <!-- End Form Elements -->
+        </div>
+    </div>
+  </div>
+  <!-- end page-wrapper -->

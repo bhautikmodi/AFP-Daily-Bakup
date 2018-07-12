@@ -1,0 +1,104 @@
+<div id="page-wrapper">
+            <div class="row">
+                 <!-- page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{header}} Course Level</h1>
+                </div>
+                <!--end page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Course Level
+							<div class="btn-group pull-right add-right">
+                       <a routerLink="/admin/courselevel/list" class="btn btn-danger btn-add">
+                       <i class="fa fa-reply fa-fw"></i> Back
+                       </a>
+                 </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!--<div class="col-lg-12">-->
+                                    <form class="form-validate"  #CourseLevelForm="ngForm" (ngSubmit)="addCourseLevel(CourseLevelForm)">
+                                        <div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Course Level</label>
+											<input type="text"  pattern="[a-zA-Z.'/,-/& ]{2,}" maxlength="100"  #CourseLevel="ngModel" [(ngModel)]="CourseLevelEntity.CourseLevel" class="form-control"
+											name="CourseLevel" [ngClass]="{red_border: (CourseLevel.dirty && CourseLevel.invalid) || (CourseLevel.pristine && submitted)}" required/>
+											<span class="error_span" *ngIf="(CourseLevel.dirty && CourseLevel.invalid) || (CourseLevel.pristine && submitted)">
+								  <span *ngIf="CourseLevel.errors && CourseLevel.errors.required">
+												Please enter Course Level
+											</span>
+										  
+										  <span *ngIf="CourseLevel.errors && CourseLevel.errors.pattern">
+												Please enter valid Course Level
+										  </span>
+								</span>
+                                        </div>
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Keyword</label>
+                                         
+											<input type="text"  #Keyword="ngModel" pattern="[a-zA-Z]{1,}" maxlength="100"  [(ngModel)]="CourseLevelEntity.Keyword" class="form-control txtupper"
+											name="Keyword" [ngClass]="{red_border: (Keyword.dirty && Keyword.invalid) || (Keyword.pristine && submitted)}" required/>
+													<span class="error_span" *ngIf="(Keyword.dirty && Keyword.invalid) || (Keyword.pristine && submitted)">
+								  <span *ngIf="Keyword.errors && Keyword.errors.required">
+												Please enter Keyword
+											</span>
+										  
+										  <span *ngIf="Keyword.errors && Keyword.errors.pattern">
+												Please enter valid Keyword
+										  </span>
+								</span>
+                                        </div>
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Description</label>
+                                            <textarea  #Description="ngModel" [(ngModel)]="CourseLevelEntity.Description" class="form-control"
+											name="Description" [ngClass]="{red_border: (Description.dirty && Description.invalid) || (Description.pristine && submitted)}" required></textarea>
+													<span class="error_span"  *ngIf="(Description.dirty && Description.invalid) || (Description.pristine && submitted)"> 
+												<span *ngIf="Description.errors.required || (Description.pristine && submitted)">Please enter Description</span>
+											</span>
+											<span class="error_span" *ngIf="Description.errors && Description.errors.pattern">
+												Please enter valid Description
+										  </span>
+                                        </div>
+										<div class="form-group col-md-6">
+                                  <label><span class="required">*</span>Active?</label>
+														  
+									<br>
+									<div class="radio_box">
+									  <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="CourseLevelEntity.IsActive" required/>
+									  <label for="role1">Yes</label>
+									</div>
+									<div class="radio_box" >
+									  <input type="radio" [disabled]="CourseLevelEntity.isdisabled>0" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="CourseLevelEntity.IsActive" required/>
+									  <label for="role2" data-toggle="tooltip" data-placement="bottom"  title="CourseLevel can't be deactive as it is already assigned to an active Courses">No </label>
+									</div>
+									<!-- <div class="radio_box" ngIf="CourseLevelEntity.ConfigurationId==0">
+											<input type="radio" [disabled]="CourseLevelEntity.isdisabled>0" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="CourseLevelEntity.IsActive" required/>
+											<label for="role2">No </label>
+										  </div><br> --><br>
+									<span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+										<span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select Active Status</span>
+									  </span>
+
+                              </div>
+										<div class="clearfix"></div>
+										<div class="form-btn">
+											<button type="submit" class="btn sub-btn"><span>Submit</span></button>
+											<button type="button" *ngIf="CourseLevelEntity.ConfigurationId==0" (click)="clearForm(CourseLevelForm)" class="btn res-btn"><span>Clear</span></button>
+										</div>
+                                    </form>
+                                </div>
+                            </div>
+                        <!--</div>-->
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+        </div>
+        <!-- end page-wrapper -->
+
+  

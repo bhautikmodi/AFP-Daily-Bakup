@@ -1,0 +1,105 @@
+<!-- navbar side -->
+  <nav class="navbar-default navbar-static-side" > 
+    <!-- sidebar-collapse -->
+    <div class="sidebar-collapse"> 
+      <!-- side-menu -->
+      <ul class="nav" id="side-menu">
+        <li> 
+          <!-- user image section-->
+          <div class="user-section">
+            
+            <div class="user-info">
+              <div>{{globals.authData.FirstName}}  {{globals.authData.LastName}}</div>
+              <div class="user-text-online"> 
+                <!--<span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online--> 
+              </div>
+            </div>
+          </div>
+        </li>
+        <li (click)="dash()" class="test" id="dash" [ngClass]="{'selected':(globals.currentLink == '/admin')||(globals.currentLink == '/admin/dashboard')}"> <a (click)="menuopen('/admin/dashboard')" style="cursor:pointer;"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> </li>
+        
+		
+
+		<!--<li [ngClass]="{'selected':(globals.currentLink == '/users/list')||(globals.currentLink == '/users/edit')}"> 
+      <a (click)="menuopen('/users/list')" style="cursor:pointer;"><i class="fa fa-users fa-fw"></i> Users</a> </li>
+      <li [ngClass]="{'selected':(globals.currentLink == '/company/list')||(globals.currentLink == '/company/edit')}"> <a (click)="menuopen('/company/list')" style="cursor:pointer;"><i class="fa fa-building-o fa-fw"></i> Companies</a> </li>
+        <li [ngClass]="{'selected':(globals.currentLink == '/domain/list')||(globals.currentLink == '/domain/add')||(globals.currentLink == '/domain/edit')}"> <a (click)="menuopen('/domain/list')" style="cursor:pointer;"><i class="fa fa-sitemap fa-fw"></i> Domains</a> </li>
+        <li [ngClass]="{'selected':(globals.currentLink == '/competency-area/list')||(globals.currentLink == '/competency-area/add')||(globals.currentLink == '/competency-area/edit')}"> <a (click)="menuopen('/competency-area/list')" style="cursor:pointer;"><i class="fa fa-tasks fa-fw"></i> Competencies</a> </li>
+        <li [ngClass]="{'selected':(globals.currentLink == '/ksa/list')||(globals.currentLink == '/ksa/add')||(globals.currentLink == '/ksa/edit')}"> <a (click)="menuopen('/ksa/list')" style="cursor:pointer;"><i class="fa fa-question fa-fw"></i> KSAs</a></li>
+        <li [ngClass]="{'selected':(globals.currentLink == '/course/list')||(globals.currentLink == '/course/add')||(globals.currentLink == '/course/edit')}"> <a (click)="menuopen('/course/list')" style="cursor:pointer;"><i class="fa fa-certificate fa-fw"></i> Courses</a> </li>
+        
+        <li id="inner_dropdown">
+          <a href="#"><i class="fa fa-wrench fa-fw"></i> General Settings<span class="fa fa-angle-right"></span></a>
+              <ul class="nav nav-second-level display_block">
+                <li [ngClass]="{'selected':(globals.currentLink == '/settings')}">
+                  <a (click)="menuopen('/settings')" style="cursor:pointer;"><i class="fa fa-cogs fa-fw"></i> Configurations</a>
+                 </li>
+        
+                 <li [ngClass]="{'selected':(globals.currentLink == '/invite-a-user/list')||(globals.currentLink == '/invite-a-user/add')||(globals.currentLink == '/invite-a-user/edit')}">
+                         <a (click)="menuopen('/invite-a-user/list')" style="cursor:pointer;"><i class="fa fa-link fa-fw"></i> Invite A User </a>
+                   </li>
+                   <li [ngClass]="{'selected':globals.currentLink == '/pending-assessment'}">
+                      <a (click)="menuopen('/pending-assessment')" style="cursor:pointer;"><i class="fa fa-calendar-times-o fa-fw"></i> Pending Assessments</a>
+                  </li>
+                   <li [ngClass]="{'selected':(globals.currentLink == '/country/list')||(globals.currentLink == '/country/add')||(globals.currentLink == '/country/edit')}">
+                    <a (click)="menuopen('/country/list')" style="cursor:pointer;"><i class="fa fa-globe fa-fw"></i> Country</a>
+                   </li>
+                   <li [ngClass]="{'selected':(globals.currentLink == '/state/list')||(globals.currentLink == '/state/add')||(globals.currentLink == '/state/edit')}">
+                    <a (click)="menuopen('/state/list')" style="cursor:pointer;"><i class="fa fa-globe fa-fw"></i> State</a>
+                   </li>
+                   <li [ngClass]="{'selected':(globals.currentLink == '/industry/list')||(globals.currentLink == '/industry/add')||(globals.currentLink == '/industry/edit')}">
+                    <a (click)="menuopen('/industry/list')" style="cursor:pointer;"><i class="fa fa-industry fa-fw"></i> Industries</a>
+                   </li>
+                   <li [ngClass]="{'selected':(globals.currentLink == '/rating-scale/list')||(globals.currentLink == '/rating-scale/add')||(globals.currentLink == '/rating-scale/edit')}">
+                    <a (click)="menuopen('/rating-scale/list')" style="cursor:pointer;"><i class="fa fa-star fa-fw"></i> Rating Scale</a>
+                   </li>
+                   <li [ngClass]="{'selected':(globals.currentLink == '/courselevel/list')||(globals.currentLink == '/courselevel/add')||(globals.currentLink == '/courselevel/edit')}">
+                    <a (click)="menuopen('/courselevel/list')" style="cursor:pointer;"><i class="fa fa-level-up fa-fw"></i> Course Level</a>
+                   </li>
+               </ul>
+     </li>
+     <li id="inner_dropdown">
+      <a href="#"><i class="fa fa-envelope-o fa-fw"></i> Email<span class="fa fa-angle-right"></span></a>
+          <ul class="nav nav-second-level display_block">
+            <li *ngIf="globals.authData.RoleId==4" [ngClass]="{'selected':(globals.currentLink == '/placeholder/list')||(globals.currentLink == '/placeholder/add')||(globals.currentLink == '/placeholder/edit')}">
+              <a (click)="menuopen('/placeholder/list')" style="cursor:pointer;"><i class="fa fa-window-maximize fa-fw"></i> Placeholder Screen</a>
+            </li>
+            <li [ngClass]="{'selected':(globals.currentLink == '/emailtemplate/list')||(globals.currentLink == '/emailtemplate/add')||(globals.currentLink == '/emailtemplate/edit')}">
+              <a (click)="menuopen('/emailtemplate/list')" style="cursor:pointer;"><i class="fa fa-list fa-fw"></i> Email Template</a>
+            </li>
+    
+           </ul>
+ </li>  -->
+
+<li [ngClass]="{'inner_dropdown':menu.check}" id="sel{{i+1}}" class="test {{menu.SelectedClass}}" (click)="addclass(i+1)" *ngFor="let menu of menuList; let i=index"> 
+  <a *ngIf="!menu.check" (click)="menuopen(menu.Url)" style="cursor:pointer;"><i class="{{menu.Icon}}"></i> {{menu.DisplayName}}</a>
+  <a *ngIf="menu.check" ><i class="{{menu.Icon}}"></i> {{menu.DisplayName}}<span class="fa fa-angle-right"></span></a>
+      <ul *ngIf="menu.check" id="nav{{i+1}}" class="nav nav-second-level display_block">
+        <li (click)="addsubclass(i+1,j)" class="test {{child.SelectedClass}}" id=slc{{i+1}}{{j}} *ngFor="let child of menu.child; let j=index">
+          <a (click)="menuopen(child.Url)" style="cursor:pointer;"><i class="{{child.Icon}}"></i> {{child.DisplayName}}</a>
+        </li>
+       </ul>
+ </li> 
+
+ <!-- <li *ngIf="globals.authData.RoleId==4" [ngClass]="{'selected':(globals.currentLink == '/rolepermission')}"> <a (click)="menuopen('/rolepermission')" style="cursor:pointer;"><i class="fa fa-user-circle fa-fw"></i> Roles Permission</a> </li>
+ <li class="inner_dropdown" (click)="addclass(0)" *ngIf="globals.authData.RoleId==4" >
+  <a href="#"><i class="fa fa-key fa-fw"></i> Log<span class="fa fa-angle-right"></span></a>
+      <ul id="nav0" class="nav nav-second-level display_block">
+        <li [ngClass]="{'selected':(globals.currentLink == '/login-log')}">
+          <a (click)="menuopen('/login-log')" style="cursor:pointer;"><i class="fa fa-key fa-fw"></i> Login/Logout Log</a>
+        </li>
+        <li [ngClass]="{'selected':(globals.currentLink == '/activity-log')}">
+          <a (click)="menuopen('/activity-log')" style="cursor:pointer;"><i class="fa fa-key fa-fw"></i> Activity Log</a>
+        </li>
+        <li [ngClass]="{'selected':(globals.currentLink == '/email-log')}">
+          <a (click)="menuopen('/email-log')" style="cursor:pointer;"><i class="fa fa-key fa-fw"></i> Email Log</a>
+        </li>
+       </ul>
+</li> -->
+ 
+      </ul>
+      <!-- end side-menu --> 
+    </div>
+    <!-- end sidebar-collapse --> 
+  </nav>
+  <!-- end navbar side --> 

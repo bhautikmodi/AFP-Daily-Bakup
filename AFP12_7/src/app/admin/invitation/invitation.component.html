@@ -1,0 +1,170 @@
+<div id="page-wrapper">
+  <div class="row">
+       <!-- page header -->
+      <div class="col-lg-12">
+          <h1 class="page-header">{{header}}Invite A User</h1>
+      </div>
+      <!--end page header -->
+  </div>
+  <div class="alert alert-{{globals.type}}" role="alert" *ngIf="globals.msgflag">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+  {{globals.message}}
+</div>
+  <div class="row">
+      <div class="col-lg-12">
+          <!-- Form Elements -->
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                Invite A User
+    <div class="btn-group pull-right add-right">
+        <a routerLink="/admin/invite-a-user/list" class="btn btn-danger btn-add">
+        <i class="fa fa-reply fa-fw"></i> Back
+        </a>
+    </div>
+              </div>
+              <div class="panel-body">
+                  <div class="row">
+                      <!--<div class="col-lg-12">-->
+                        <form class="form-validate"  #InvitationForm="ngForm" (ngSubmit)="addInvitation(InvitationForm)">
+                            <div class="form-group col-md-12">
+                                <h3 class="top-head">Company Details</h3>
+                                </div>
+                                <div *ngIf="!companyhide">
+                                <div class="form-group col-md-6" >
+                                   <!-- <div *ngIf="!companyhide">-->
+                                    <label>Company</label>
+                                    <ng-select [options]="CompanyList"   placeholder="No selected" #CompanyId="ngModel" 
+                                    (ngModel)="InvitationEntity.CompanyId" (selected)="onSelected($event)"  >
+                                 
+                                    </ng-select>
+                                    <!-- <select class="form-control" #CompanyId="ngModel" [(ngModel)]="InvitationEntity.CompanyId" name="CompanyId" [ngClass]="{red_border: (CompanyId.dirty && CompanyId.invalid) || (CompanyId.pristine && submitted)}" required>  
+									<option value="" ngSelected='InvitationEntity.CompanyId==""' >Select Company </option>
+                                    <option *ngFor="let Company of companyList" value="{{Company.CompanyId}}" >{{Company.Name}}</option>  
+                                </select> -->
+                                <!-- <span class="error_span"  *ngIf="(CompanyId.dirty && CompanyId.invalid) || (CompanyId.pristine && submitted)"> 
+                                    <span *ngIf="CompanyId.errors.required || (CompanyId.pristine && submitted)">Please select company name </span>
+                                </span> -->
+                           <!-- </div>-->
+                                </div>
+                                <div class="form-group col-md-1 or_block">
+                                    OR
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <button type="button" class="btn sub-btn btn-small margin_top" (click)="com()"><span>Add Company</span></button>
+                                </div>
+
+                            </div>
+                                <div class="clearfix"></div>
+                                 
+
+
+                                <div *ngIf="companyhide">
+                                   <div   (click)="del()" class="close_btn btn btn-danger btn-rounded btn-sm">  <i class="fa fa-close"></i></div>
+                                    <div class="clearfix"></div>
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Company Name</label>
+                                    <input type="text" class="form-control" #Name="ngModel" name="Name"
+                                    pattern="[a-zA-Z'.$\ ]{2,100}" maxlength="100"
+                                        [(ngModel)]="InvitationEntity.Name" [disabled]="btn_disable" [ngClass]="{red_border: (((Name.dirty && Name.invalid) || (Name.pristine && submitted)) && !submitted1)}"  required/>
+                                    <span class="error_span"  *ngIf="(Name.dirty && Name.invalid) || (Name.pristine && submitted)"> 
+                                        <span *ngIf="Name.errors.required || (Name.pristine && submitted)">Please enter Company name</span>
+                                        <span class="error_span" *ngIf="Name.errors && Name.errors.pattern">
+                                        Please enter valid Company name
+                                  </span>
+                                    </span>	
+                                    
+                                </div>
+                                
+                                
+                                <div class="form-group col-md-6">
+                                    <label>Industry</label>
+                                    <select class="form-control"   #IndustryId="ngModel" [(ngModel)]="InvitationEntity.IndustryId" name="IndustryId"  [disabled]="btn_disable" >  
+									<option value="" ngSelected='InvitationEntity.IndustryId==""' >Select Industry </option>
+									<option *ngFor="let Industry of IndustryList" value="{{Industry.IndustryId}}" 
+									ngSelected="InvitationEntity.IndustryId==Industry.IndustryId" >{{Industry.IndustryName}}</option>
+								</select>
+									<!-- <span class="error_span" *ngIf="(IndustryId.dirty && IndustryId.invalid) || (IndustryId.pristine && submitted)">  
+										<span *ngIf="IndustryId.errors.required || (IndustryId.pristine && submitted)">
+											Please select industry										</span> 
+									</span>  -->
+                                </div>
+                                
+                                <div class="clearfix"></div>
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Phone Number</label>
+                                    <input type="text" class="form-control" [disabled]="btn_disable"  #PhoneNo="ngModel" name="PhoneNo"
+                                    pattern="[0-9\-.()+\s]{3,13}"  maxlength="13"
+							[(ngModel)]="InvitationEntity.PhoneNo" [ngClass]="{red_border: ((PhoneNo.dirty && PhoneNo.invalid) || (PhoneNo.pristine && submitted))&& !submitted1}"  required/>
+						<span class="error_span"  *ngIf="(PhoneNo.dirty && PhoneNo.invalid) || (PhoneNo.pristine && submitted)"> 
+							<span *ngIf="PhoneNo.errors.required || (PhoneNo.pristine && submitted)">Please enter Phone Number</span>
+							<span class="error_span" *ngIf="PhoneNo.errors && PhoneNo.errors.pattern">
+							Please enter valid Phone Number
+					  </span>
+						</span>
+                                </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Website</label>
+                                    <input type="text" class="form-control"  [disabled]="btn_disable"  #Website="ngModel" maxlength="250" pattern="[a-zA-Z0-9.-_]{1,}[.]{1}[a-zA-Z]{2,}"
+                                     [(ngModel)]="InvitationEntity.Website" name="Website" 
+				[ngClass]="{red_border: ((Website.dirty && Website.invalid) || (Website.pristine && submitted))&& !submitted1}" required/>  
+						  <span class="error_span" *ngIf="(Website.dirty && Website.invalid) || (Website.pristine && submitted)"> 
+							<span *ngIf="Website.errors.required || (Website.pristine && submitted)">Please enter Website</span>
+							<span *ngIf="Website.errors && Website.errors.pattern">Please enter valid Website</span>
+						</span>
+                                </div>
+
+         </div>              
+
+
+
+
+                                <div class="form-group col-md-12">
+                                    <h3 class="top1-head">Email to Invite User</h3>
+                                    </div>
+                            <div class="form-group col-md-6">
+                                  <label><span class="required">*</span>Email Address</label>
+                                  <input type="Email" placeholder="Email" class="form-control" #EmailAddress="ngModel" email 
+                                  pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="100" [(ngModel)]="InvitationEntity.EmailAddress" name="EmailAddress" [ngClass]="{red_border: (EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)}" required/>
+                                  <span class="error_span" *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)">
+                                              
+                                              <span *ngIf="EmailAddress.errors && EmailAddress.errors.required">
+                                                Please enter Email Address
+                                              </span>
+                                              
+                                              <span *ngIf="EmailAddress.errors && EmailAddress.errors.pattern">
+                                                Please input valid Email Address
+                                              </span>
+                                          
+                                </span> 
+                                  
+                                  
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label><span class="required">*</span>Role</label>
+                               <select class='select-option' required class="form-control" #RoleId="ngModel" [(ngModel)]="InvitationEntity.RoleId" name="RoleId" [ngClass]="{red_border: (RoleId.dirty && RoleId.invalid) || (RoleId.pristine && submitted)}">
+                               <option value="" ngSelected='InvitationEntity.RoleId==""'>Select</option>
+                                <option class='option' *ngFor='let role of roleList' [value]="role.RoleId">{{role.RoleName}}</option></select>
+                                <span class="error_span"  *ngIf="(RoleId.dirty && RoleId.invalid) || (RoleId.pristine && submitted)"> 
+                                    <span *ngIf="RoleId.errors.required || (RoleId.pristine && submitted)">Please select role </span>
+                                </span>
+                            </div>
+               
+
+
+
+
+          <div class="clearfix"></div>
+          <div class="form-btn">
+            <button type="submit" class="btn sub-btn"><span>Submit</span></button>
+            <button type="button" (click)="clearForm(InvitationForm)" class="btn res-btn"><span>Clear</span></button>
+          </div>
+                          </form>
+                      </div>
+                  </div>
+              <!--</div>-->
+          </div>
+           <!-- End Form Elements -->
+      </div>
+  </div>
+</div>

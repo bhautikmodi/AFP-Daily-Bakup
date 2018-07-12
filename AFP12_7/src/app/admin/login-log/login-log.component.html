@@ -1,0 +1,53 @@
+ <!--  page-wrapper -->
+ <div id="page-wrapper">
+  <div class="row"> 
+    <!--  page header -->
+    <div class="col-lg-12">
+      <h1 class="page-header"><span class="pull-left">Login/Logout Log</span>
+        <div class="btn-group pull-right add-right export-data">
+            <button (click)="tableToExcel('dataTables-example', 'W3C Example Table')" class="btn btn-danger btn-add" data-toggle="tooltip" title="Export All Login/Logout Logs"><i class="fa fa-download"></i></button>
+          <button  class="btn btn-danger btn-add print" data-toggle="tooltip" title="Print"><i class="fa fa-print"></i></button>
+        </div><div class="clearfix"></div> </h1>
+    </div>   
+    <!-- end  page header --> 
+  </div>
+  <div class="row">
+    <div class="col-lg-12"> 
+      <!-- Advanced Tables -->
+      <div class="panel panel-default">
+        <!-- <div class="panel-heading"> 
+          
+        </div> -->
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>User Name</th>
+                  <th>Role Name</th>
+                  <th>Login Type</th>
+                  <th>Panel Type</th>
+                  <th>Date Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let log of loginlogList; let i = index" >
+                      <td class="width_8">{{i+1}}</td>
+                      <td class="width_18">{{log.UserName}}</td> 
+                      <td class="width_18">{{log.RoleName}}</td>
+                      <td class="width_18"><span *ngIf="log.LoginType==0">Logout</span><span *ngIf="log.LoginType==1">Login</span></td>
+                      <td class="width_18"><span *ngIf="log.PanelType==0">Frontend Panel</span><span *ngIf="log.PanelType==1">Admin Panel</span></td>
+                      <td class="width_10">{{log.CreatedOn | date:'MM/dd/yyyy H:mm:ss'}}</td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--End Advanced Tables --> 
+    </div>
+  </div>
+</div>
+<!-- end page-wrapper --> 
+

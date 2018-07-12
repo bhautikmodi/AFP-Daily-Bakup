@@ -1,0 +1,74 @@
+  <div id="page-wrapper">
+            <div class="row">
+                 <!-- page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{header}} Industry</h1>
+                </div>
+                <!--end page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Industry
+							<div class="btn-group pull-right add-right">
+						  		<a routerLink="/admin/industry/list" class="btn btn-danger btn-add">
+						  		<i class="fa fa-reply fa-fw"></i> Back
+						  		</a>
+							</div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!--<div class="col-lg-12">-->
+                                 <form class="form-validate"  #IndustryForm="ngForm" (ngSubmit)="addIndustry(IndustryForm)">
+                                        <div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Industry</label>
+											<input type="text" pattern="[a-zA-Z0-9.'/,-./;/:/(/&/)/./ ]{2,}" maxlength="100" #IndustryName="ngModel" [(ngModel)]="IndustryEntity.IndustryName" class="form-control"
+											name="IndustryName"  [ngClass]="{red_border: (IndustryName.dirty && IndustryName.invalid) || (IndustryName.pristine && submitted)}" required/>
+												<span class="error_span" *ngIf="(IndustryName.dirty && IndustryName.invalid) || (IndustryName.pristine && submitted)">
+								  <span *ngIf="IndustryName.errors && IndustryName.errors.required">
+												Please enter Industry
+											</span>
+										  
+										  <span *ngIf="IndustryName.errors && IndustryName.errors.pattern">
+												Please enter valid Industry
+										  </span>
+								</span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                                <label><span class="required">*</span>Active?</label>                                    
+                                                  <br>
+                                                  <div class="radio_box">
+                                                    <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="IndustryEntity.IsActive" required/>
+                                                    <label for="role1">Yes</label>
+                                                  </div>
+                                                  <div class="radio_box" *ngIf="IndustryEntity.IndustryId==0">
+                                                        <input type="radio" [disabled]="IndustryEntity.isdisabled>0" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="IndustryEntity.IsActive" required/>
+                                                        <label for="role2" >No </label>
+                                                      </div>
+                                                      <div class="inline_btn tooltip_inline"  data-toggle="tooltip" data-placement="bottom"   title="You can’t deactivate Industry as it has been already used in Companies" > 
+                                                  <div class="radio_box" *ngIf="IndustryEntity.IndustryId>0">
+                                                    <input type="radio" [disabled]="IndustryEntity.isdisabled>0" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="IndustryEntity.IsActive" required/>
+                                                    <label for="role2">No </label>
+                                                  </div>
+                                                  </div>
+                                                  <br>
+                                                  <span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+                                                      <span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select Active Status</span>
+                                                    </span>                          
+                                            </div>
+										<div class="clearfix"></div>
+										<div class="form-btn">
+											<button type="submit" class="btn sub-btn"><span>Submit</span></button>
+											<button type="button" *ngIf="IndustryEntity.IndustryId==0" (click)="clearForm(IndustryForm)" class="btn res-btn"><span>Clear</span></button>
+										</div>
+                                    </form>
+                                </div>
+                            </div>
+                        <!--</div>-->
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+        </div>

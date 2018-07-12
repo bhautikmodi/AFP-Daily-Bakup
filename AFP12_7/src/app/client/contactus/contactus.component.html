@@ -1,0 +1,121 @@
+<div class="inner_content">
+  <div class="container ">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h2>AFP Corporate Training Skills Assessment</h2>
+        <h1>Contact Us</h1>
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+			
+            <div class="contact_pageblock">
+              <div class="contact_address"> <i class="fa fa-map-marker"></i>
+                <p>4520 East-West Highway, Suite 800<br>
+                  Bethesda, MD 20814</p>
+              </div>
+              <div class="contact_address phone_p"> <i class="fa fa-phone"></i>
+                <p> <a href="tel:+1.301.907.2862">+1 301.907.2862</a></p>
+              </div>
+              <div class="contact_address"> <i class="fa fa-envelope-o"></i>
+                <p> <a href="mailto:info@afponline.com">info@afponline.com</a><br>
+                  <a href="mailto:sales@afponline.com">sales@afponline.com</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <!--<div class="map_contact">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3101.3431410917483!2d-77.09410588464702!3d38.98466427955729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7c9654ba4e92b%3A0x587b5fbf4ca25c50!2sAssociation+For+Financial+Professionals!5e0!3m2!1sen!2sin!4v1522071992853" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</div>-->
+			  <div class="form_bg">
+						<div class="alert alert-{{globals.type}}" role="alert" *ngIf="globals.msgflag">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+							{{globals.message}}
+					 </div>
+			  <form class="form-validate" role="form" #ContactForm="ngForm" (ngSubmit)="addContact(ContactForm)">
+				<div class="row">
+				  <div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<label><span>*</span>First Name </label>
+							<input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="ContactEntity.FirstName" name="FirstName" pattern="[a-zA-Z' ]{2,100}"
+			[ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}" required/>  
+						<span class="error_span" *ngIf="(FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)"> 
+						<span *ngIf="FirstName.errors.required || (FirstName.pristine && submitted)">Please enter your first name</span>
+						<span *ngIf="FirstName.errors && FirstName.errors.pattern">Please enter valid first name</span>
+					</span>
+						</div>
+				  </div>
+				  <div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<label><span>*</span>Last Name </label>
+						 <input type="text" class="form-control" #LastName="ngModel" [(ngModel)]="ContactEntity.LastName" name="LastName" pattern="[a-zA-Z' ]{2,100}"
+			[ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}" required/>  
+						<span class="error_span" *ngIf="(LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)"> 
+						<span *ngIf="LastName.errors.required || (LastName.pristine && submitted)">Please enter your last name</span>
+						<span *ngIf="LastName.errors && LastName.errors.pattern">Please enter valid Last Name</span>
+					</span>
+						</div>
+				  </div>
+					<div class="clearfix"></div>
+					
+				  <div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<label><span>*</span>Email </label>
+							 <input type="Email" class="form-control" #EmailAddress="ngModel" email [disabled]="ContactEntity.UserId>0"
+																		pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [(ngModel)]="ContactEntity.EmailAddress"
+										name="EmailAddress" [ngClass]="{red_border: (EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)}"
+										required/>
+																		<span class="error_span" *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)">
+																								
+																								<span *ngIf="EmailAddress.errors && EmailAddress.errors.required">
+																									Please enter your email address 
+																								</span>
+																								
+																								<span *ngIf="EmailAddress.errors && EmailAddress.errors.pattern">
+																									Please enter valid email address
+																								</span>
+																						
+																	</span> 
+						</div>
+				  </div>
+				  <div class="col-md-6 col-sm-6">
+						<div class="form-group ">
+							<label><span class="required">*</span>Company Name</label>
+<input type="text" class="form-control" #CompanyName="ngModel" [disabled]="ContactEntity.UserId>0"	[(ngModel)]="ContactEntity.CompanyName" class="form-control" name="CompanyName" pattern="[a-zA-Z' ]{2,100}"  maxlength="100"
+[ngClass]="{red_border: (CompanyName.dirty && CompanyName.invalid) || (CompanyName.pristine && submitted)}" required/>
+<span class="error_span" *ngIf="(CompanyName.dirty && CompanyName.invalid) || (CompanyName.pristine && submitted)"> 
+<span *ngIf="CompanyName.errors.required || (CompanyName.pristine && submitted)">Please enter company name </span>
+<span class="error_span" *ngIf="CompanyName.errors && CompanyName.errors.pattern">
+Please enter valid company name
+</span>
+</span>
+</div>
+				  </div>
+				  <div class="clearfix"></div>
+				  <div class="col-md-12 col-sm-12">
+					<div class="form-group">
+					  <label><span>*</span>Comments </label>
+						<textarea type="text" class="form-control"  #Comments="ngModel" name="Comments"	[(ngModel)]="ContactEntity.Comments"
+						[ngClass]="{red_border: (Comments.dirty && Comments.invalid) || (Comments.pristine && submitted1)}"required ></textarea>
+						<span class="error_span" *ngIf="(Comments.dirty && Comments.invalid) || (Comments.pristine && submitted1)"> 
+							<span *ngIf="Comments.errors.required || (Comments.pristine && submitted1)">Please enter Comments</span>
+						
+							</span>
+					</div>
+				  </div>
+				  
+				  <div class="clearfix"></div>
+				</div>
+				
+				<button class="next_btn nextBtn" type="submit"><span>Submit</span></button>
+			  </form>
+			  </div>
+          </div>
+			<div class="clearfix"></div>
+			<div class="col-md-12 col-sm-12">
+			<div class="map_contact">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3101.3431410917483!2d-77.09410588464702!3d38.98466427955729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7c9654ba4e92b%3A0x587b5fbf4ca25c50!2sAssociation+For+Financial+Professionals!5e0!3m2!1sen!2sin!4v1522071992853" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>  </div>
+      </div>
+    </div>
+  </div>
+</div>

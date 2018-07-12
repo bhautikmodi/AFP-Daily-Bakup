@@ -1,0 +1,117 @@
+<!--  page-wrapper -->
+<div id="page-wrapper">
+    <div class="row">
+         <!-- page header -->
+        <div class="col-lg-12">
+            <h1 class="page-header">{{header}}  Competency Area</h1>
+        </div>
+        <!--end page header -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Elements -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Competency Area
+                    <div class="btn-group pull-right add-right">
+                         <a routerLink="/admin/competency-area/list" class="btn btn-danger btn-add">
+                         <i class="fa fa-reply fa-fw"></i> Back
+                         </a>
+                   </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <!--<div class="col-lg-12">-->
+                            <form class="form-validate" #areaForm="ngForm" (ngSubmit)="addArea(areaForm)">
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Name</label>
+                                    <input type="text" class="form-control" #Name="ngModel" [(ngModel)]="areaEntity.Name" name="Name" pattern="[a-zA-Z/ ]{2,}" maxlength="100" [ngClass]="{red_border: (Name.dirty && Name.invalid) || (Name.pristine && submitted)}" required/>  
+                                    <span class="error_span" *ngIf="(Name.dirty && Name.invalid) || (Name.pristine && submitted)"> 
+                                      <span *ngIf="Name.errors.required || (Name.pristine && submitted)">Please enter Competency Area</span>
+                                      <span *ngIf="Name.errors && Name.errors.pattern">Please enter valid name</span>
+                                    </span>
+                                </div>
+                                  
+                                  <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Domain</label>
+                                    <select class="form-control" #DomainId="ngModel" [(ngModel)]="areaEntity.DomainId" name="DomainId" [ngClass]="{red_border: (DomainId.dirty && DomainId.invalid) || (DomainId.pristine && submitted)}" required>
+                                        <option value="" ngSelected='areaEntity.DomainId==""'>Select</option>
+                                        <ng-container *ngFor="let domain of domainList">
+                                                <!-- <option *ngFor="let domain of domainList" value="{{domain.DomainId}}" ngSelected="areaEntity.DomainId==domain.DomainId">{{domain.Name}}</option> -->
+                                            <option *ngIf="(domain.IsActive==1 && areaEntity.CAreaId==0)||((domain.IsActive==1 || areaEntity.DomainId==domain.DomainId) && areaEntity.CAreaId>0)" value="{{domain.DomainId}}" ngSelected="areaEntity.DomainId==domain.DomainId">{{domain.Name}}</option>
+                                        </ng-container>                                        
+                                    </select>
+                                    <span class="error_span" *ngIf="(DomainId.dirty && DomainId.invalid) || (DomainId.pristine && submitted)"> 
+                                        <span *ngIf="DomainId.errors.required || (DomainId.pristine && submitted)">Please select Domain</span>
+                                      </span>
+                                  </div>
+
+                                  <div class="clearfix"></div>
+                                    <div class="form-group col-md-12">
+                                        <label><span class="required">*</span>Description</label>
+                                        <!-- <textarea class="form-control" style="width: 1007px;" #Description="ngModel" [(ngModel)]="areaEntity.Description" name="Description" id="Description"></textarea>
+                                        <br> -->
+                                        <textarea class="form-control" #Description="ngModel"[(ngModel)]="areaEntity.Description" name="Description" id="Description"	rows="10" cols="60" contenteditable="true"></textarea>
+                                        <!-- <span class="error_span" *ngIf="(Description.dirty && Description.invalid) || (Description.pristine && submitted)"> 
+                                            <span *ngIf="Description.errors.required || (Description.pristine && submitted)">Please enter description</span>
+                                        </span> -->
+                                      <span class="error_span" *ngIf="des_valid">Please enter Description</span>
+                                    </div>
+                    
+                                <div class="clearfix"></div>
+                                <!-- <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Description</label>
+                                    <textarea class="form-control" #Description="ngModel" [(ngModel)]="areaEntity.Description" name="Description" [ngClass]="{red_border: (Description.dirty && Description.invalid) || (Description.pristine && submitted)}" required></textarea>
+                                    <span class="error_span" *ngIf="(Description.dirty && Description.invalid) || (Description.pristine && submitted)"> 
+                                        <span *ngIf="Description.errors.required || (Description.pristine && submitted)">Please enter description</span>
+                                      </span>
+                                </div> -->
+            
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Key Concepts</label>
+                                    <textarea class="form-control" #KeyConcepts="ngModel"   [(ngModel)]="areaEntity.KeyConcepts" name="KeyConcepts"  [ngClass]="{red_border: (KeyConcepts.dirty && KeyConcepts.invalid) || (KeyConcepts.pristine && submitted)}" required></textarea>
+                                    <span class="error_span" *ngIf="(KeyConcepts.dirty && KeyConcepts.invalid) || (KeyConcepts.pristine && submitted)"> 
+                                        <span *ngIf="KeyConcepts.errors.required || (KeyConcepts.pristine && submitted)">Please enter Key Concepts of Competency Area</span>
+                                        <span *ngIf="KeyConcepts.errors && KeyConcepts.errors.pattern">Please enter valid Key Concepts of Competency Area</span>
+                                      </span>
+                                </div>
+                             
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Active?</label>                                    
+                                      <br>
+                                      <div class="radio_box">
+                                        <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="areaEntity.IsActive" required/>
+                                        <label for="role1">Yes</label>
+                                      </div>
+                                      <div class="radio_box" *ngIf="areaEntity.CAreaId==0">
+                                            <input type="radio"  name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="areaEntity.IsActive" required/>
+                                            <label for="role2" >No </label>
+                                          </div>
+                                          <div class="inline_btn tooltip_inline" data-toggle="tooltip" data-placement="bottom" title="You can’t deactivate Competencies as it has been already used in Assessment and assigned to KSA" > 
+                                      <div class="radio_box"*ngIf="areaEntity.CAreaId>0">
+                                        <input type="radio" [disabled]="areaEntity.isdisabled>0" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="areaEntity.IsActive" required/>
+                                        <label for="role2" title="">No </label>
+                            
+                                      </div>
+                                      </div><br>
+                                      <!-- <span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+                                          <span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select active status</span>
+                                        </span>                           -->
+                                </div>
+            
+                                <div class="clearfix"></div>
+                                <div class="form-btn">
+                                  <button type="submit" [disabled]="btn_disable || areaEntity.isdisabled==1" class="btn sub-btn"><span>Submit</span></button>
+                                  <button type="button" *ngIf="areaEntity.CAreaId==0" (click)="clearForm(areaForm)" class="btn res-btn"><span>Clear</span></button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                <!--</div>-->
+            </div>
+             <!-- End Form Elements -->
+        </div>
+    </div>
+  </div>
+  <!-- end page-wrapper -->

@@ -1,0 +1,38 @@
+<div class="inner_content height_zero">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <h2>AFP Test Assessment</h2>
+              <h1>KSA List</h1>
+              <div class="clearfix"></div>
+              <div id="carousel" class="flexslider ksa_list_block">
+<table class="table table-bordered table-hover no_margin" id="dataTables-example">
+    <thead>
+    <tr>
+      <th>Sr No.</th>
+      <th>Domain</th>
+      <th>C Area</th>
+      <th>KSA</th>
+    </tr>
+</thead>
+<tbody>
+    <!-- <tr>
+        <td class="width_10">1</td>
+        <td class="width_30">dgdf</td>
+        <td class="width_30">dfgdfg dfgdfgdfg</td>
+        <td class="width_30">dfg dfgdfgergdfgdfhfg d dgdf</td>
+    </tr> -->
+     <tr *ngFor="let ksa of ksaDetails; let i = index">
+      <td class="width_10">{{i+1}}</td>
+      <td class="width_30">{{ksa.DomainName}}</td>
+      <td class="width_30">{{ksa.CAreaName}}</td>
+      <td class="width_30">{{ksa.KSAName}}</td>
+    </tr>
+</tbody>
+   
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>

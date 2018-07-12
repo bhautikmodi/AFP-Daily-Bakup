@@ -1,0 +1,77 @@
+
+
+<!-- Inner Section -->
+<div class="inner_content dashboard_section">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>AFP Corporate Training Skills Assessment</h2>
+            <h1>Your Dashboard</h1>
+			<p class="padding_30">Here are your assessment(s) that have either been started or completed. Click on view details for your completed assessment results. For further assistance, please contact Robert Pinover at <a href="mailto:rpinover@AFPonline.org">rpinover@AFPonline.org</a> or <a href="tel:301.961.8884">301.961.8884</a>.</p>
+          </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="startassessment_box"> <a routerLink="/assessment_details/" class="red_btn"><span>Start New Assessment</span></a> </div>
+      </div>
+      <div class="col-md-3 col-sm-6" *ngFor="let pa of passessmentList; let i = index">
+          <div class="dashboard_box">
+            <div class="assess_name"><span>{{pa.AssessmentName}}</span></div>
+            <div class="dashboard_chart_block"><a routerLink="/assessment/{{pa.CAssessmentId}}" class="next_btn margin_con"><span>Continue Assessment</span></a></div>
+            <div class="dashboard_item">
+              <div class="date_title"><b>Date Started :</b> {{pa.StartTime | date : 'MM-dd-yyyy'}}</div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-3 col-sm-6" *ngFor="let ass of assessmentList; let i = index">
+        <div class="dashboard_box">
+          <div class="assess_name"><span>{{ass.assessment.AssessmentName}}</span></div>
+          <div id="dashboard_result_bar{{i}}" class="dashboard_chart_block"></div>
+          <div class="dashboard_item">
+            <div class="date_title"><b>Date Taken :</b> {{ass.assessment.StartTime | date : 'MM-dd-yyyy' }}</div>
+            <a routerLink="/user-assessment-details/{{ass.assessment.CAssessmentId}}" class="next_btn"><span>View Details</span></a>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-3 col-sm-3">
+        <div class="dashboard_box">
+          <div class="assess_name">Development Team</div>
+          <div id="dashboard_result_bar1" class="dashboard_chart_block"></div>
+          <div class="dashboard_item">
+            <div class="date_title">02-12-2018</div>
+            <a href="generaluser_details.html" class="red_btn">View Details</a>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      
+       <div class="col-md-3 col-sm-3">
+        <div class="dashboard_box">
+          <div class="assess_name">Designing Team</div>
+          <div id="dashboard_result_bar2" class="dashboard_chart_block"></div>
+          <div class="dashboard_item">
+            <div class="date_title">03-15-2018</div>
+            <a href="sales_user_details.html" class="red_btn">View Details</a>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="dashboard_box">
+          <div class="assess_name">HR Assessment</div>
+          <div id="dashboard_result_bar3" class="dashboard_chart_block"></div>
+          <div class="dashboard_item">
+            <div class="date_title">03-22-2018</div>
+            <a href="sales_user_details.html" class="red_btn">View Details</a>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div> -->
+      
+      
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<!-- End Inner Section --> 

@@ -1,0 +1,324 @@
+  <!--  page-wrapper -->
+  <div id="page-wrapper">
+    <div class="row"> 
+      <!--  page header -->
+      <div class="col-lg-12">
+        <h1 class="page-header">Settings</h1>
+      </div>
+      <!-- end  page header --> 
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="cmsgflag">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </button>
+      {{cmessage}}
+   </div>
+    <div class="row">
+      <div class="col-lg-12"> 
+        <!-- Advanced Tables -->
+        <div class="panel panel-default" *ngIf="globals.authData.RoleId==4">
+          <div class="panel-heading"> General Configurations </div>
+          <div class="panel-body">
+            <div class="row"> 
+              <!--<div class="col-lg-12">-->
+                <form class="form-validate" #ksaForm="ngForm" (ngSubmit)="addNoOfKSA(ksaForm)" *ngIf="globals.authData.RoleId==4">
+                <!-- No of ksa code start -->
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>No of KSA</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" pattern="[0-9]{1,10}" #noofksa="ngModel" [(ngModel)]="configEntity.noofksa" name="noofksa" [ngClass]="{red_border: ((noofksa.dirty && noofksa.invalid) || (noofksa.pristine && submitted1)) || (ksaError && !noofksa.errors) || (totksaError && !noofksa.errors)}" required/>  
+                    <span class="error_span" *ngIf="(noofksa.dirty && noofksa.invalid) || (noofksa.pristine && submitted1)"> 
+                      <span *ngIf="noofksa.errors.required || (noofksa.pristine && submitted1)">Please enter No of KSA</span>                      
+                      <span *ngIf="noofksa.errors && noofksa.errors.pattern">Please enter valid No of KSA</span>
+                    </span>
+                    <span class="error_span" *ngIf="ksaError && !noofksa.errors">Minimum value is {{NoOfCArea}}</span>
+                    <span class="error_span" *ngIf="totksaError && !noofksa.errors">Maximum value is {{NoKSA}}</span>
+                  </div>
+                  <div class="form-btn col-md-2 no-padding">
+                    <button type="submit" *ngIf="permissionEntity.AddEdit==1" [disabled]="btn_disable1" class="btn sub-btn btn-small"><span>Submit</span></button>
+                    <!--<button class="btn res-btn">Edit</button>--> 
+                  </div>
+                </div>
+              </form>
+              <!-- no of ksa code end --> 
+
+              
+              
+              <!-- invitation code start -->
+              <!-- <form class="form-validate" #invitationForm="ngForm" (ngSubmit)="addinvitation(invitationForm)">
+             
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Invitation Features</label>
+                  <div class="col-md-6">
+                    <div class="radio_box">
+                      <input type="radio" name="invitation" id="role1" value="1" #invitation="ngModel" [(ngModel)]="configEntity.invitation" required>
+                      <label for="role1">Yes</label>
+                    </div>
+                    <div class="radio_box">
+                      <input type="radio" name="invitation" id="role2" value="0" #invitation="ngModel" [(ngModel)]="configEntity.invitation" required>
+                      <label for="role2">No </label>                      
+                    </div>
+                    <span class="error_span" *ngIf="(invitation.dirty && invitation.invalid) || (invitation.pristine && submitted2)"> 
+                      <br><span *ngIf="invitation.errors.required || (invitation.pristine && submitted2)">Please select invitation features</span>
+                    </span>
+                  </div>
+                  <div class="form-btn col-md-2 no-padding">
+                    <button type="submit" *ngIf="permissionEntity.AddEdit==1" [disabled]="btn_disable2" class="btn sub-btn btn-small"><span>Submit</span></button>
+                  
+                  </div>
+                </div>
+              </form> -->
+              <!-- invitation code end --> 
+              
+              <!-- remaining day code start -->
+              
+              <form class="form-validate" #rdaysForm="ngForm" (ngSubmit)="addRDays(rdaysForm)" *ngIf="globals.authData.RoleId==4">
+                
+                <!-- No of ksa code start -->
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Remaining Days</label>
+                  <div class="col-md-6">
+                      <span class="error_span" *ngIf="rdaysForm.invalid && submitted3">Please enter valid days</span>
+                    <div class="row r-group" *ngFor="let days of reminderDaysList; let i = index; let last = last;">
+                  <div class="col-md-8">
+                      <input type="text" class="form-control" pattern="[0-9]{1,3}" #Day="ngModel" [(ngModel)]="reminderDaysList[i].Day" name="Day{{i}}" required/>  
+                    <!-- <input type="text" class="form-control" #remainingdays="ngModel" [(ngModel)]="configEntity.remainingdays" name="remainingdays" [ngClass]="{red_border: (remainingdays.dirty && remainingdays.invalid) || (remainingdays.pristine && submitted3)}" required/> -->
+                    <!-- <span class="error_span" *ngIf="(Day.dirty && Day.invalid) || (Day.pristine && submitted3)"> 
+                        <span *ngIf="Day.errors && Day.errors.pattern">Please enter a valid Day</span>
+                      <span *ngIf="Day.errors.required || (Day.pristine && submitted3)">Please enter Remaining Days</span>
+                    </span>  -->
+                  </div>
+                  <div class="col-md-4 pull-right">
+                      <button type="button" (click)="DeleteRDays(days)" *ngIf="i!=0" class="r-btnRemove btn btn-danger btn-rounded btn-sm" title="Delete">
+                          <span class="fa fa-times"></span>
+                        </button>
+                    <button type="button" (click)="AddNewRDays(i)" *ngIf="last" class="r-btnAdd btn btn-default btn-rounded btn-sm" title="Add">
+                      <span class="fa fa-plus"></span>
+                    </button>                    
+                  </div>
+                </div>
+                </div>
+                  <div class="form-btn col-md-2 no-padding">
+                    <button type="submit" *ngIf="permissionEntity.AddEdit==1" [disabled]="btn_disable3" class="btn sub-btn btn-small"><span>Submit</span></button>
+                    <!--<button class="btn res-btn">Edit</button>--> 
+                  </div>
+                </div>
+              </form>   
+              <form class="form-validate" #contForm="ngForm" (ngSubmit)="addcontact(contForm)" *ngIf="globals.authData.RoleId==4">
+                <!-- No of ksa code start -->
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Contact Us Email</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" #ContactFrom="ngModel" [(ngModel)]="ContactEntity.ContactFrom" name="ContactFrom" pattern="[a-zA-Z0-9.,-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}(,|$)" [ngClass]="{red_border: (ContactFrom.dirty && ContactFrom.invalid) || (ContactFrom.pristine && submitted5)}"  required/>    
+                    <span class="error_span" *ngIf="(ContactFrom.dirty && ContactFrom.invalid) || (ContactFrom.pristine && submitted5)"> 
+                      <span *ngIf="ContactFrom.errors.required || (ContactFrom.pristine && submitted5)">Please enter Email from</span>
+                      <span *ngIf="!(ContactFrom.errors.required || (ContactFrom.pristine && submitted5)) && ContactFrom.errors.pattern">
+                        Please enter a valid Email Address
+                    </span>
+                    </span>
+                   
+                  </div>
+                  <div class="form-btn col-md-2 no-padding">
+                    <button type="submit" *ngIf="permissionEntity.AddEdit==1" [disabled]="btn_disable5" class="btn sub-btn btn-small"><span>Submit</span></button>
+                    <!--<button class="btn res-btn">Edit</button>--> 
+                  </div>
+                </div>
+              </form>    
+              <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding">Invitation Message</label>
+                  </div>
+              <form class="form-validate" #InvitationForm="ngForm" (ngSubmit)="addInvitation(InvitationForm)">
+                
+                <!-- No of ksa code start -->
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Success</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" pattern="[a-zA-Z]{2,}" #Success="ngModel" [(ngModel)]="InviEntity.Success" name="Success"  [ngClass]="{red_border: ((Success.dirty && Success.invalid) || (Success.pristine && submitted6))}" required/>  
+                    <span class="error_span" *ngIf="(Success.dirty && Success.invalid) || (Success.pristine && submitted6)"> 
+                        <span *ngIf="Success.errors.required || (Success.pristine && submitted6)">Please enter Success</span>                      
+                        <span *ngIf="!(Success.errors.required || (Success.pristine && submitted6)) && Success.errors.pattern">Please enter valid Success</span>
+                      </span>
+                  </div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Revoke</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" pattern="[a-zA-Z]{2,}" #Revoke="ngModel" [(ngModel)]="InviEntity.Revoke" name="Revoke" [ngClass]="{red_border: (Revoke.dirty && Revoke.invalid) || (Revoke.pristine && submitted6)}" required/>  
+                    <span class="error_span" *ngIf="(Revoke.dirty && Revoke.invalid) || (Revoke.pristine && submitted6)"> 
+                      <span *ngIf="Revoke.errors.required || (Revoke.pristine && submitted6)">Please enter Revoke message</span>
+                      <span  *ngIf="!(Revoke.errors.required || (Revoke.pristine && submitted6)) && Revoke.errors.pattern">
+                        Please enter a valid Revoke message
+                    </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Pending</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" pattern="[a-zA-Z]{2,}" #Pending="ngModel" [(ngModel)]="InviEntity.Pending" name="Pending" [ngClass]="{red_border: (Pending.dirty && Pending.invalid) || (Pending.pristine && submitted6)}" required/>  
+                    <span class="error_span" *ngIf="(Pending.dirty && Pending.invalid) || (Pending.pristine && submitted6)"> 
+                      <span *ngIf="Pending.errors.required || (Pending.pristine && submitted6)">Please enter Pending message</span>
+                      <span *ngIf="!(Pending.errors.required || (Pending.pristine && submitted6)) && Pending.errors.pattern">
+                        Please enter a valid Pending message
+                    </span>
+                    </span>
+                  </div>
+                  <div class="form-btn col-md-2 no-padding">
+                    <button type="submit" *ngIf="permissionEntity.AddEdit==1" [disabled]="btn_disable6" class="btn sub-btn btn-small"><span>Submit</span></button>
+                    <!--<button class="btn res-btn">Edit</button>--> 
+                  </div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="col-md-2"></label>
+                  
+                </div>
+              </form>
+              <!-- remaining day code start --> 
+
+              
+              
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="cmsgflag1">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </button>
+          {{cmessage1}}
+       </div>
+        <div class="panel panel-default" *ngIf="permissionEntity.AddEdit==1">
+          <div class="panel-heading"> SMTP Details</div>
+          <div class="panel-body">
+            <div class="row"> 
+              <!-- email from start -->
+              <form class="form-validate" #fromForm="ngForm" (ngSubmit)="addEmailFrom(fromForm)">
+                
+                <!-- No of ksa code start -->
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Email Address</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #emailfrom="ngModel" [(ngModel)]="configEntity.emailfrom" name="emailfrom" [ngClass]="{red_border: (emailfrom.dirty && emailfrom.invalid) || (emailfrom.pristine && submitted4)}" required/>  
+                    <span class="error_span" *ngIf="(emailfrom.dirty && emailfrom.invalid) || (emailfrom.pristine && submitted4)"> 
+                      <span *ngIf="emailfrom.errors.required || (emailfrom.pristine && submitted4)">Please enter Email from</span>
+                      <span *ngIf="emailfrom.errors && emailfrom.errors.pattern">
+                        Please enter a valid Email Address
+                    </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="col-md-2 small-padding"><span class="required">*</span>Email Password</label>
+                  <div class="col-md-6">
+                    <input type="password" class="form-control" #emailpassword="ngModel" [(ngModel)]="configEntity.emailpassword" name="emailpassword" [ngClass]="{red_border: (emailpassword.dirty && emailpassword.invalid) || (emailpassword.pristine && submitted4)}" required/>  
+                    <span class="error_span" *ngIf="(emailpassword.dirty && emailpassword.invalid) || (emailpassword.pristine && submitted4)"> 
+                      <span *ngIf="emailpassword.errors.required || (emailpassword.pristine && submitted4)">Please enter Email Password</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="col-md-2"></label>
+                  <div class="form-btn col-md-2 no-padding">
+                    <button type="submit" *ngIf="permissionEntity.AddEdit==1" [disabled]="btn_disable4" class="btn sub-btn btn-small"><span>Submit</span></button>
+                    <!--<button class="btn res-btn">Edit</button>--> 
+                  </div>
+                </div>
+              </form>
+              <!-- email from end --> 
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" *ngIf="permissionEntity.AddEdit==1">
+          <div class="panel-heading"> Team Size Configurations </div>
+          <div class="panel-body">
+            <div class="row"> 
+              <!--<div class="col-lg-12">-->
+                  <form class="form-validate" #teamsizeForm="ngForm" (ngSubmit)="addTeamSize(teamsizeForm)">
+                <div class="form-group col-md-12">
+                  <label><span class="required">*</span>{{header}} Team Size</label>
+					<div class="row">
+                  		<div id="example1">	
+							<div class="r-group">
+								<div class="col-md-6">
+                  <input type="text" data-toggle="tooltip" data-placement="bottom"
+                   title="You can only enter alphanumeric and hyphen(-). ex. 0-5 Employee"
+                    class="form-control" #TeamSize="ngModel" maxlength="100" [(ngModel)]="teamsizeEntity.TeamSize" pattern="[a-zA-Z0-9-\s]{1,}" name="TeamSize"
+                     [ngClass]="{red_border: (TeamSize.dirty && TeamSize.invalid) || (TeamSize.pristine && submitted)}" required/>  
+                   <span class="error_span" *ngIf="(TeamSize.dirty && TeamSize.invalid) || (TeamSize.pristine && submitted)"> 
+                    <span *ngIf="TeamSize.errors.required || (TeamSize.pristine && submitted)">Please enter team size</span>
+                    <span *ngIf="TeamSize.errors && TeamSize.errors.pattern">Please enter valid team size</span>
+                </span>
+                  <!-- <input type="text" class="form-control" #Name="ngModel" [(ngModel)]="domainEntity.Name" name="Name" 
+                  pattern="[a-zA-Z\s]{2,}" maxlength="100" [ngClass]="{red_border: (Name.dirty && Name.invalid) || (Name.pristine && submitted)}" required/>  
+                  <span class="error_span" *ngIf="(Name.dirty && Name.invalid) || (Name.pristine && submitted)"> 
+                    <span *ngIf="Name.errors.required || (Name.pristine && submitted)">Please enter Domain</span>
+                    <span *ngIf="Name.errors && Name.errors.pattern">Please enter valid Domain</span>
+                </span> -->
+								</div>								
+								<div class="clearfix"></div>
+							
+							</div>
+							
+					  	</div> 
+					</div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-btn">
+                  <button type="submit" class="btn sub-btn"><span>Submit</span></button>
+                  <button type="button"  (click)="cancleForm(teamsizeForm)" class="btn res-btn"><span>Clear</span></button>
+                  <!--<button class="btn res-btn">Edit</button>--> 
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-{{globals.type}}" role="alert" *ngIf="globals.msgflag">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </button>
+          {{globals.message}}
+       </div>
+		<div class="panel panel-default">
+          <div class="panel-heading"> List of Team Size
+            <!--<div class="btn-group pull-right add-right">
+              <a href="addinvitelink.html" class="btn btn-danger btn-add">
+              <i class="fa fa-plus fa-fw"></i>Add a Email Address
+              </a>
+            </div>-->
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+					          <th style="width: 80%;">Team Size</th>
+                    <th *ngIf="permissionEntity.AddEdit==1 || permissionEntity.Delete==1">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let teamsize of teamsizeList; let i = index" >
+                        <td>{{i+1}}</td> 
+                        <td>{{teamsize.TeamSize}} </td> 
+                        <td *ngIf="permissionEntity.AddEdit==1 || permissionEntity.Delete==1">
+                          <button *ngIf="permissionEntity.AddEdit==1" class="btn btn-default btn-rounded btn-sm" (click)="editteamsize(teamsize)" title="Edit"> <span class="fa fa-pencil"></span> </button>
+                          <button *ngIf="permissionEntity.Delete==1" data-type="Record" (click)="deleteteamsize(teamsize)" class="btn btn-danger btn-rounded btn-sm delete-user-row-with-ajax-button" title="Delete"> <span class="fa fa-times"></span> </button></td>
+                      </tr>                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--End Advanced Tables --> 
+      </div>
+    </div>
+  </div>
+  <!-- end page-wrapper --> 
+
+  <!-- Model -->
+  <div class="modal fade bs-example-modal-sm" data-backdrop="static" data-keyboard="false" id="Delete_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <p>Are You Sure You Want To Remove This Team Size?</p>
+                </div>
+                <div class="modal-footer text-center">
+                  <button type="button" class="next_btn" (click)="deleteConfirm(deleteEntity)" id="yes_btn"><span>Yes</span></button>
+                  <button type="button" class="back_btn" data-dismiss="modal"><span>No</span></button>
+              </div>
+          </div>
+      </div>
+    </div>

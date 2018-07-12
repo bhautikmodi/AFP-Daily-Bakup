@@ -1,0 +1,50 @@
+
+<div class="inner_content dashboard_section">
+  <div class="container">
+    <div class="row" *ngIf="assessmentList!=''" >
+        <div class="col-md-12">
+            <h2>AFP Corporate Training Skills Assessment</h2>
+            <h1>Assessments by {{userList.FirstName}}</h1>
+             <a routerLink="/sales-admin-dashboard" class="back_btn margin_bottom pull-right"><span><i class="fa fa-reply"></i>Back to Dashboard</span></a> <!--<a routerLink="/report/{{userList.UserId}}" class="red_btn margin_bottom pull-left"><span>View Report</span></a> -->
+           </div>
+ 
+     <div class="clearfix"></div>
+		<div class="dashboard_height">
+		<div class="col-md-3 col-sm-6" *ngFor="let pa of padinglist; let i = index">
+        <div class="dashboard_box">
+          <div class="assess_name"><span>{{pa.AssessmentName}}</span></div>
+          <div class="dashboard_chart_block pending_assessment">Pending Assessment</div>
+          <div class="dashboard_item">
+            <div class="date_title"><b>Date Started : </b>{{pa.StartTime | date : 'MM-dd-yyyy'}}</div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+     <div class="col-md-3 col-sm-6" *ngFor="let ass of assessmentList; let i = index">
+      <div class="dashboard_box">
+        <div class="assess_name"><span>{{ass.assessment.AssessmentName}}</span></div>
+        <div id="dashboard_result_bar{{i}}" class="dashboard_chart_block"></div>
+        <div class="dashboard_item">
+          <div class="date_title"><b>Date Taken : </b>{{ass.assessment.StartTime | date : 'MM-dd-yyyy' }}</div>
+          <a routerLink="/sales-user-details/{{ass.assessment.CAssessmentId}}" class="next_btn"><span>View Details</span></a>
+          
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+		</div>
+      <div class="clearfix"></div>
+     
+    </div>
+    <div class="row"  *ngIf="assessmentList==''" >
+		<div class="col-md-12">
+        <h2>AFP Corporate Training Skills Assessment</h2>
+        <h1>Assessments by {{userList.FirstName}}</h1>
+        <!-- <a routerLink="/sales-admin-dashboard" class="back_btn"><span><i class="fa fa-reply"></i>Back to Dashboard</span></a> -->
+			<div class="clearfix visible-xs"></div>
+			<h3>There are no Assessment given.</h3>
+		</div>
+	  </div>
+  </div>
+</div>
+<div class="clearfix"></div>

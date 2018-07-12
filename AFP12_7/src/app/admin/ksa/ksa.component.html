@@ -1,0 +1,87 @@
+<!--  page-wrapper -->
+<div id="page-wrapper">
+    <div class="row">
+         <!-- page header -->
+        <div class="col-lg-12">
+            <h1 class="page-header">{{header}} KSA</h1>
+        </div>
+        <!--end page header -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Elements -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    KSA
+                    <div class="btn-group pull-right add-right">
+                         <a routerLink="/admin/ksa/list" class="btn btn-danger btn-add">
+                         <i class="fa fa-reply fa-fw"></i> Back
+                         </a>
+                   </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <!--<div class="col-lg-12">-->
+                            <form class="form-validate" #ksaForm="ngForm" (ngSubmit)="addKSA(ksaForm)">
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Name</label>
+                                    <textarea type="text" class="form-control" #Name="ngModel" [(ngModel)]="ksaEntity.Name" name="Name" pattern="[a-zA-Z0-9/',;.&()?\-’\n ]{2,}" [ngClass]="{red_border: (Name.dirty && Name.invalid) || (Name.pristine && submitted)}" required></textarea>
+                                    <!-- <input type="text" class="form-control" #Name="ngModel" [(ngModel)]="ksaEntity.Name" name="Name" [ngClass]="{red_border: (Name.dirty && Name.invalid) || (Name.pristine && submitted)}" required/>   -->
+                                    <span class="error_span" *ngIf="(Name.dirty && Name.invalid) || (Name.pristine && submitted)"> 
+                                      <span *ngIf="Name.errors.required || (Name.pristine && submitted)">Please enter KSA</span>
+                                      <span *ngIf="Name.errors && Name.errors.pattern">Please enter valid KSA</span>
+                                    </span>
+                                </div>
+                                  
+                                  <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Competency Area</label>
+                                    <select class="form-control" #CAreaId="ngModel" [(ngModel)]="ksaEntity.CAreaId" name="CAreaId" [ngClass]="{red_border: (CAreaId.dirty && CAreaId.invalid) || (CAreaId.pristine && submitted)}" required>
+                                        <option value="" ngSelected='ksaEntity.CAreaId==""'>Select</option>
+                                        <option *ngFor="let area of areaList" value="{{area.CAreaId}}" ngSelected="ksaEntity.CAreaId==area.CAreaId">{{area.Name}}</option>
+                                    </select>
+                                    <span class="error_span" *ngIf="(CAreaId.dirty && CAreaId.invalid) || (CAreaId.pristine && submitted)"> 
+                                        <span *ngIf="CAreaId.errors.required || (CAreaId.pristine && submitted)">Please select Competency Area</span>
+                                      </span>
+                                  </div>
+                    
+                                
+                                <div class="clearfix"></div>
+                                <div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Active?</label>                                    
+                                      <br>
+                                      <div class="radio_box">
+                                        <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="ksaEntity.IsActive" required/>
+                                        <label for="role1">Yes</label>
+                                      </div>
+                                      <div class="radio_box" *ngIf="ksaEntity.KSAId==0">
+                                            <input type="radio" [disabled]="ksaEntity.isdisabled>0" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="ksaEntity.IsActive" required/>
+                                            <label for="role2" >No </label>
+                                          </div>
+                                          <div class="inline_btn tooltip_inline"  data-toggle="tooltip" data-placement="bottom"   title="You can’t deactivate KSA as it has been already used in Assessment" > 
+                                      <div class="radio_box" *ngIf="ksaEntity.KSAId>0">
+                                        <input type="radio" [disabled]="ksaEntity.isdisabled>0" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="ksaEntity.IsActive" required/>
+                                        <label for="role2"  title=" ">No </label>
+                                      </div>
+                                      </div>
+                                      <br>
+                                      <span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+                                          <span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select Active Status</span>
+                                        </span>                          
+                                </div>
+                                            
+                                <div class="clearfix"></div>
+                                <div class="form-btn">
+                                  <button type="submit" [disabled]="btn_disable || ksaEntity.isdisabled==1" class="btn sub-btn"><span>Submit</span></button>
+                                  <button type="button" *ngIf="ksaEntity.KSAId==0" (click)="clearForm(ksaForm)" class="btn res-btn"><span>Clear</span></button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                <!--</div>-->
+            </div>
+             <!-- End Form Elements -->
+        </div>
+    </div>
+  </div>
+  <!-- end page-wrapper -->

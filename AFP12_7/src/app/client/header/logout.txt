@@ -1,0 +1,32 @@
+<header>
+  <div class="container ">
+    <div class="row"> 
+      <!-- Logo -->
+      <div class="col-md-2 col-sm-3 col-xs-3">
+        <div class="logo"> <a href="index.html"><img src="assets/images/logo.png" alt="Association for Financial Professionals - AFP" title="Association for Financial Professionals - AFP" class="img-responsive" /></a> </div>
+      </div>
+      <!-- End Logo --> 
+	  <div class="col-md-10 col-sm-9 col-xs-9 text-right" *ngIf="globals.authData.FirstName==''">
+        <ul class="account_menu">
+ 
+          <li><a href="#"> <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
+        </ul>
+      </div>
+
+		<div class="col-md-10 col-sm-9 col-xs-9 text-right" *ngIf="globals.authData.FirstName!=''">
+        <ul class="account_menu">
+          <li><a href="#" class="dropdown-toggle dashboard-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-user" aria-hidden="true"></i>{{ globals.authData.FirstName}} <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+              <li><a >Dashboard</a></li>
+              <li><a routerLink="/register/edit/{{globals.authData.UserId}}">Edit Profile</a></li>
+              <li><a routerLink="/changepass/">Change Password</a></li>
+              <li><a style="cursor:pointer;"  (click)="logout()">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+	
+  </div>
+</header>

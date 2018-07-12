@@ -1,0 +1,232 @@
+        <!--  page-wrapper -->
+          <div id="page-wrapper">
+            <div class="row">
+                 <!-- page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{header}} User</h1>
+                </div>
+                <!--end page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                         <div class="panel-heading">
+                             User
+							 <div class="btn-group pull-right add-right">
+						  		<a routerLink="/admin/users/list" class="btn btn-danger btn-add">
+						  		<i class="fa fa-reply fa-fw"></i> Back
+						  		</a>
+							</div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!--<div class="col-lg-12">-->
+                                    <form class="form-validate" role="form" #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+										
+                                        <div class="form-group col-md-6">
+                                            <label><span class="required">*</span>First Name</label>
+                                            <input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="userEntity.FirstName" class="form-control" name="FirstName" pattern="[a-zA-Z'.$\ ]{2,100}"  [ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}" required/>
+											<span class="error_span" *ngIf="(FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)"> 
+											<span *ngIf="FirstName.errors.required || (FirstName.pristine && submitted)">Please enter first name </span>
+											<span class="error_span" *ngIf="FirstName.errors && FirstName.errors.pattern">
+												Please enter valid first name
+										  </span>		
+											</span>
+									   </div>
+																				
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Last Name</label>
+                                            <input type="text" class="form-control" #LastName="ngModel" name="LastName" 
+											pattern="[a-zA-Z'.$\ ]{2,100}"
+												[(ngModel)]="userEntity.LastName" [ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}"  required/>
+												<span class="error_span"  *ngIf="(LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)"> 
+												<span *ngIf="LastName.errors.required || (LastName.pristine && submitted)">Please enter last name </span>
+												<span class="error_span" *ngIf="LastName.errors && LastName.errors.pattern">
+												Please enter valid last name.
+										  </span>
+											</span>
+												
+                                        </div>
+										
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Company Name</label>
+                                              <select class='select-option' required class="form-control" #CompanyId="ngModel" 
+											  [(ngModel)]="userEntity.CompanyId" name="CompanyId" [ngClass]="{red_border: (CompanyId.dirty && CompanyId.invalid) || (CompanyId.pristine && submitted)}">
+											   
+											<option value="">Select</option>
+												<option class='option' *ngFor='let comp of companyList' [value]="comp.CompanyId">{{comp.Name}}</option> </select>
+												 <span class="error_span"  *ngIf="(CompanyId.dirty && CompanyId.invalid) || (CompanyId.pristine && submitted)"> 
+												<span *ngIf="CompanyId.errors.required || (CompanyId.pristine && submitted)">Please select company name </span>
+											</span>
+                                        </div>
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Email Address</label>
+                                            <input type="email" class="form-control" #EmailAddress="ngModel" name="EmailAddress" 
+											pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"	[(ngModel)]="userEntity.EmailAddress" [ngClass]="{red_border: (EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)}"  required/>
+											<span class="error_span"  *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)"> 
+												<span *ngIf="EmailAddress.errors.required || (EmailAddress.pristine && submitted)">Please enter email address </span>
+											</span>
+											<span class="error_span" *ngIf="EmailAddress.errors && EmailAddress.errors.pattern">
+												Please enter valid email address
+										  </span>
+                                        </div>
+										
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Job Title</label>
+                                           
+
+                                            <input type="text" class="form-control" #Title="ngModel" name="Title" pattern="[a-zA-Z0-9.'-/, ]{0,}" 
+												[(ngModel)]="userEntity.Title" [ngClass]="{red_border: (Title.dirty && Title.invalid) || (Title.pristine && submitted)}"  required/>
+												<span class="error_span"  *ngIf="(Title.dirty && Title.invalid) || (Title.pristine && submitted)"> 
+												<span *ngIf="Title.errors.required || (Title.pristine && submitted)">Please enter job title </span>
+												<span class="error_span" *ngIf="Title.errors && Title.errors.pattern">
+													Please enter valid title
+										  </span>
+											</span>
+												
+                                        </div>
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Role</label>
+                                           <select class='select-option' required class="form-control" #RoleId="ngModel" [(ngModel)]="userEntity.RoleId" name="RoleId" [ngClass]="{red_border: (RoleId.dirty && RoleId.invalid) || (RoleId.pristine && submitted)}">
+										   <option value="">Select</option>
+											<option class='option' *ngFor='let role of roleList' [value]="role.RoleId">{{role.RoleName}}</option></select>
+											<span class="error_span"  *ngIf="(RoleId.dirty && RoleId.invalid) || (RoleId.pristine && submitted)"> 
+												<span *ngIf="RoleId.errors.required || (RoleId.pristine && submitted)">Please select role </span>
+											</span>
+										</div>
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Phone Number</label>
+											<input type="text" class="form-control" #PhoneNumber="ngModel" name="PhoneNumber" 
+											pattern="[0-9 .()-]{0,}" maxlength="13"
+												[(ngModel)]="userEntity.PhoneNumber" [ngClass]="{red_border: (PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)}"  required/>
+												<span class="error_span"  *ngIf="(PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)"> 
+												<span *ngIf="PhoneNumber.errors.required || (PhoneNumber.pristine && submitted)">Please enter phone number</span>
+												<span class="error_span" *ngIf="PhoneNumber.errors && PhoneNumber.errors.pattern">
+													Please enter valid phone number
+										  </span>
+											</span>
+										</div>
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required"></span>Phone Number (Alternative)</label>
+											<input type="text" class="form-control" #PhoneNumberl="ngModel" name="PhoneNumberl" 
+											 maxlength="13"
+												[(ngModel)]="userEntity.PhoneNumberl" />
+												
+                                        </div>
+										
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Address 1</label>
+                                            <textarea  #Address1="ngModel" [(ngModel)]="userEntity.Address1" class="form-control"
+											name="Address1"  maxlength="250" [ngClass]="{red_border: (Address1.dirty && Address1.invalid) || (Address1.pristine && submitted)}" required></textarea>
+											<span class="error_span"  *ngIf="(Address1.dirty && Address1.invalid) || (Address1.pristine && submitted)"> 
+												<span *ngIf="Address1.errors.required || (Address1.pristine && submitted)">Please enter address </span>
+												<span class="error_span" *ngIf="Address1.errors && Address1.errors.pattern">
+												Please enter valid address.
+										  </span>
+											</span>
+											
+                                        </div>
+										
+										
+										
+										<div class="form-group col-md-6">
+												<label><span class="required"></span>Address 2</label>
+												<textarea type="text" class="form-control" #PhoneNumberl="ngModel" name="Address2" 
+												 maxlength="250"
+													[(ngModel)]="userEntity.Address2" ></textarea>
+													
+											</div>
+										<div class="clearfix"></div>
+										
+										<div class="form-group col-md-4">
+                                            <label><span class="required">*</span>Country</label>
+                                           <select class='select-option' (change)="getStateList(userForm)" required class="form-control" #CountryId="ngModel"
+										   [(ngModel)]="userEntity.CountryId" name="CountryId" [ngClass]="{red_border: (CountryId.dirty && CountryId.invalid) || (CountryId.pristine && submitted)}">
+										<option value="">Select</option>
+									<option *ngFor="let country of CountryList" value="{{country.CountryId}}" ngSelected="userEntity.CountryId==country.CountryId">{{country.CountryName}}</option></select>
+											 <span class="error_span"  *ngIf="(CountryId.dirty && CountryId.invalid) || (CountryId.pristine && submitted)"> 
+												<span *ngIf="CountryId.errors.required || (CountryId.pristine && submitted)">Please select country </span>
+											</span>
+                                        </div>
+										
+										
+										<div class="form-group col-md-4">
+                                            <label><span class="required">*</span>State / Province</label>
+                                          <select class="form-control" #StateId="ngModel" [(ngModel)]="userEntity.StateId" name="StateId" [ngClass]="{red_border: (StateId.dirty && StateId.invalid) || (StateId.pristine && submitted)}" required>  
+									<option value="" ngSelected='userEntity.StateId==""'>Select</option>
+									<option *ngFor="let state of stateList" value="{{state.StateId}}" ngSelected="userEntity.StateId==state.StateId">{{state.StateName}}</option>
+								</select>
+								<span class="error_span"  *ngIf="(StateId.dirty && StateId.invalid) || (StateId.pristine && submitted)"> 
+												<span *ngIf="StateId.errors.required || (StateId.pristine && submitted)">Please select state </span>
+											</span>
+                                        </div>
+										
+										<div class="form-group col-md-4">
+                                            <label><span class="required">*</span>City</label>
+											<input type="text" class="form-control" #City="ngModel" [(ngModel)]="userEntity.City" class="form-control" name="City" pattern="[a-zA-Z ']{0,}"  [ngClass]="{red_border: (City.dirty && City.invalid) || (City.pristine && submitted)}" required/>
+											<span class="error_span" *ngIf="(City.dirty && City.invalid) || (City.pristine && submitted)"> 
+											<span *ngIf="City.errors.required || (City.pristine && submitted)">Please enter city </span>
+											<span class="error_span" *ngIf="City.errors && City.errors.pattern">
+												Please enter valid city
+										  </span>		
+											</span>
+                                        </div>
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Zip Code</label>
+                                            <input type="text" class="form-control" #ZipCode="ngModel" name="ZipCode" [(ngModel)]="userEntity.ZipCode" [ngClass]="{red_border: (ZipCode.dirty && ZipCode.invalid) || (ZipCode.pristine && submitted)}" pattern="[0-9]{0,}" maxlength="8" required/>
+											<span class="error_span"  *ngIf="(ZipCode.dirty && ZipCode.invalid) || (ZipCode.pristine && submitted)"> 
+												<span *ngIf="ZipCode.errors.required || (ZipCode.pristine && submitted)">Please enter zip code </span>
+												<span class="error_span" *ngIf="ZipCode.errors && ZipCode.errors.pattern">
+												Please enter valid zip code.
+										  </span>
+											</span>
+                                        </div>
+										
+										
+										
+
+										
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Active?</label>
+                                            <br>
+											<div class="radio_box">
+									  <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="userEntity.IsActive" required/>
+									  <label for="role1">Yes</label>
+									</div>
+									<div class="radio_box">
+									  <input type="radio" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="userEntity.IsActive" required/>
+									  <label for="role2">No </label>
+									</div><br>
+									<span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+										<span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select active status</span>
+									  </span>
+
+                              </div>
+										
+									
+										<div class="clearfix"></div>
+										<div class="form-btn">
+											<button type="submit" class="btn sub-btn"><span>Submit</span></button>
+											<!-- <button type="reset" class="btn res-btn">Clear</button> -->
+										</div>
+                                    </form>
+                                </div>
+                            </div>
+                        <!--</div>-->
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+        </div>
+        <!-- end page-wrapper -->

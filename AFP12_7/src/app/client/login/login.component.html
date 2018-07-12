@@ -1,0 +1,55 @@
+
+
+<!-- Inner Section -->
+<div class="inner_content">
+  <div class="container">
+    <div class="row">
+	<div class="col-md-12">
+        <h2>AFP Corporate Training Skills Assessment</h2>
+        <h1>Sign in</h1>
+		  <h5>Sign in to your AFP Account. Enter your details below.</h5>
+    <div class="col-md-5 col-sm-6 form_bg">
+      
+        <div class="clearfix"></div>
+
+        <div class="alert alert-{{globals.type}}" role="alert" *ngIf="globals.msgflag || invalid">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">  </button>
+            {{globals.message}}
+          </div>
+
+		<!-- <div class="alert alert-danger" role="alert" *ngIf="invalid">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                                Invalid username or password.
+                            </div> -->
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div class="form-group">
+                                    <label><span>*</span>Email</label>
+                                    <input type="email" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #EmailAddress="ngModel" [(ngModel)]="loginEntity.EmailAddress" name="EmailAddress" [ngClass]="{red_border: (EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)}" required/>  
+                                    <span class="error_span" *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)"> 
+                                        <span *ngIf="EmailAddress.errors.required || (EmailAddress.pristine && submitted)">Please enter your email</span>
+                                        <span *ngIf="EmailAddress.errors && EmailAddress.errors.pattern">
+                                          Please enter valid Email
+                                        </span>
+                                        </span>
+                                </div>
+								<div class="form-group">
+                                    <label><span>*</span>Password</label>
+                                    <input type="password" class="form-control"  #Password="ngModel" [(ngModel)]="loginEntity.Password" name="Password" [ngClass]="{red_border: (Password.dirty && Password.invalid) || (Password.pristine && submitted)}" required/>  
+                                    <span class="error_span" *ngIf="(Password.dirty && Password.invalid) || (Password.pristine && submitted)"> 
+                                        <span *ngIf="Password.errors.required || (Password.pristine && submitted)">Please enter your password</span>
+                                        
+                                    </span>
+                                </div>  
+          <a routerLink="/forgotpassword" class="forgot_paswd">Forgot Password? </a>
+          <button class="next_btn pull-right" type="submit"><span>Sign In</span></button>
+        </form>
+        <div class="clearfix"></div>
+      </div>
+	  </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+<!-- End Inner Section --> 
+

@@ -1,0 +1,264 @@
+
+
+<!-- Inner Section -->
+<div class="register_content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>AFP Corporate Training Skills Assessment</h2>
+        <h1>{{header}}</h1>
+      </div>
+	  <form class="form-validate" role="form" #RegisterForm="ngForm" (ngSubmit)="addRegister(RegisterForm)">
+        <div class="col-md-3 col-sm-4">
+          <h3>Company Profile</h3>
+          <table class="table table-bordered table-striped" >
+            <tr>
+              <th>Company Name</th>
+            </tr>
+            <tr>
+            <td>{{companydata.Name}}</td> 
+            </tr>
+            <tr>
+              <th>Industry</th>
+            </tr>
+            <tr>
+              <td>
+                <span *ngIf="companydata.IndustryName">{{companydata.IndustryName}}</span>
+                <span *ngIf="!companydata.IndustryName">No Industry</span>
+              </td> 
+            </tr>
+            <tr>
+              <th>Phone number</th>
+            </tr>
+            <tr>
+              <td>{{companydata.PhoneNo}}</td> 
+            </tr>
+            <tr>
+              <th>Website</th>
+            </tr>
+            <tr>
+            <td>{{companydata.Website}}</td> 
+            </tr>
+          </table>
+		 
+			</div>
+      <div class="col-md-9 col-sm-8 ">
+        <h3>User Profile</h3>
+        <div class="right_content">
+			 
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label><span>*</span>First Name </label>
+                <input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="RegisterEntity.FirstName" name="FirstName" pattern="[a-zA-Z'.$\ ]{2,100}"
+				[ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}" required/>  
+						  <span class="error_span" *ngIf="(FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)"> 
+							<span *ngIf="FirstName.errors.required || (FirstName.pristine && submitted)">Please enter your first name</span>
+							<span *ngIf="FirstName.errors && FirstName.errors.pattern">Please enter valid first name</span>
+						</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label><span>*</span>Last Name </label>
+               <input type="text" class="form-control" #LastName="ngModel" [(ngModel)]="RegisterEntity.LastName" name="LastName" pattern="[a-zA-Z'.$\ ]{2,100}"
+				[ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}" required/>  
+						  <span class="error_span" *ngIf="(LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)"> 
+							<span *ngIf="LastName.errors.required || (LastName.pristine && submitted)">Please enter your last name</span>
+							<span *ngIf="LastName.errors && LastName.errors.pattern">Please enter valid Last Name</span>
+						</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label><span>*</span>Job Title</label>
+                 <input type="text" class="form-control" #Title="ngModel" [(ngModel)]="RegisterEntity.Title" name="Title" pattern="[a-zA-Z ]{2,100}"
+				[ngClass]="{red_border: (Title.dirty && Title.invalid) || (Title.pristine && submitted)}" required/>  
+						  <span class="error_span" *ngIf="(Title.dirty && Title.invalid) || (Title.pristine && submitted)"> 
+							<span *ngIf="Title.errors.required || (Title.pristine && submitted)">Please enter your title</span>
+							<span *ngIf="Title.errors && Title.errors.pattern">Please enter valid Title</span>
+						</span>
+              </div>
+            </div>
+			<div class="col-md-6 col-sm-12"  >
+			  <div class="form-group">
+				<label><span>*</span>Email Address</label>
+        <input type="text" name="EmailAddress" class="form-control" disabled="true"  #EmailAddress="ngModel" [(ngModel)]="RegisterEntity.EmailAddress" />
+        <!-- <span class="error_span" *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)"> 
+          <span *ngIf="EmailAddress.errors.required || (EmailAddress.pristine && submitted)">Please enter your emailaddress</span>
+          <span *ngIf="EmailAddress.errors && EmailAddress.errors.pattern">Please enter a valid emailaddress</span>
+        </span> -->
+			  </div>
+			</div>
+		
+      <div class="clearfix"></div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label><span>*</span>Phone Number </label>
+              <input type="text" class="form-control" #PhoneNumber="ngModel" name="PhoneNumber" pattern="[0-9\-.()+\s]{3,13}" maxlength="13"
+        [(ngModel)]="RegisterEntity.PhoneNumber" [ngClass]="{red_border: (PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)}"  required/>
+        <span class="error_span" *ngIf="(PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)"> 
+          <span *ngIf="PhoneNumber.errors.required || (PhoneNumber.pristine && submitted)">Please enter your phone number</span>
+          <span *ngIf="PhoneNumber.errors && PhoneNumber.errors.pattern">Please enter valid phone number</span>
+        </span>
+        </div>
+      </div>
+            
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+
+                
+                <label>Phone Number (Alternative) </label>
+                <input type="text" class="form-control" #PhoneNumberl="ngModel" name="PhoneNumberl"  pattern="[0-9\-.()+\s]{3,13}" maxlength="13"
+        [(ngModel)]="RegisterEntity.PhoneNumberl" [ngClass]="{red_border: (PhoneNumberl.dirty && PhoneNumberl.invalid)}"   />
+        <span class="error_span" *ngIf="(PhoneNumberl.dirty && PhoneNumberl.invalid)"> 
+    
+          <span *ngIf="PhoneNumberl.errors && PhoneNumberl.errors.pattern">Please enter valid phone number</span>
+        </span>
+      
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-sm-12" *ngIf="RegisterEntity.UserId=='0'">
+              <div class="form-group">
+                <label><span>*</span>Password </label>
+                 <input type="password" class="form-control" (keyup)="checkpassword()" data-toggle="tooltip" data-placement="top" title="Use 8 or more characters with a mix of letters, numbers & symbols(! @ # $ & * _ - )" pattern="^([a-zA-Z0-9.-_-@*&$#!]{8,15})$" #Password="ngModel" 
+				 [(ngModel)]="RegisterEntity.Password" name="Password" [ngClass]="{red_border: (Password.dirty && Password.invalid) || (Password.pristine && submitted)}" required/>
+                   <span class="error_span" *ngIf="(Password.dirty && Password.invalid) || (Password.pristine && submitted)">
+									<span *ngIf="Password.errors && Password.errors.required">
+                    Please enter your password
+											</span>
+										  
+										  <span *ngIf="Password.errors && Password.errors.pattern">
+												Password must be 8 to 15 characters 
+										  </span>
+								</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12" *ngIf="RegisterEntity.UserId=='0'">
+              <div class="form-group">
+                <label><span>*</span>Confirm Password</label>
+					<input type="password" class="form-control" (keyup)="checkpassword()" pattern="[a-zA-Z0-9.-_-@$*&!#]{8,15}"#cPassword="ngModel"
+					[(ngModel)]="RegisterEntity.cPassword" name="cPassword" [ngClass]="{red_border: ((cPassword.dirty && cPassword.invalid) || (cPassword.pristine && submitted)) || (same && !(cPassword.errors && cPassword.errors.pattern && cPassword.errors.required))}" required/>
+                   <span class="error_span" *ngIf="(cPassword.dirty && cPassword.invalid) || (cPassword.pristine && submitted) || same">
+						<span *ngIf="cPassword.errors && cPassword.errors.required && !same">
+              Please enter your password
+								</span>
+							  
+							  <span *ngIf="cPassword.errors && cPassword.errors.pattern && !same">
+									Password must be 8 to 15 characters
+							  </span>
+							  <span *ngIf="same && !(cPassword.errors && cPassword.errors.pattern && cPassword.errors.required)">
+									Those passwords didn't match
+							  </span>
+					</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label><span>*</span>Address 1 </label>
+                  <input type="text" class="form-control"  #Address1="ngModel" maxlength="250" 
+				 [(ngModel)]="RegisterEntity.Address1" name="Address1" 
+				 [ngClass]="{red_border: (Address1.dirty && Address1.invalid) || (Address1.pristine && submitted)}" required/>
+                   <span class="error_span" *ngIf="(Address1.dirty && Address1.invalid) || (Address1.pristine && submitted)">
+									<span *ngIf="Address1.errors && Address1.errors.required">
+                    Please enter your address
+											</span>
+										
+								</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label><span></span>Address 2 </label>
+                 <input type="text" class="form-control"  #Address2="ngModel" maxlength="250" 
+				 [(ngModel)]="RegisterEntity.Address2" name="Address2" 
+				 [ngClass]="{red_border: (Address2.dirty && Address2.invalid)}"  />
+         <span class="error_span" *ngIf="(Address2.dirty && Address2.invalid)"> 
+    
+            <span *ngIf="Address2.errors && Address2.errors.pattern">Please enter Your address</span>
+          </span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label><span>*</span>Country </label>
+               <select    class="form-control "  (change)="getStateList(RegisterForm)"  #CountryId="ngModel"
+             [(ngModel)]="RegisterEntity.CountryId" name="CountryId"
+              [ngClass]="{red_border: (CountryId.dirty && CountryId.invalid) || (CountryId.pristine && submitted)}" required>
+					<option value="" ngSelected='RegisterEntity.CountryId==""'>Select Country</option>
+				<option *ngFor="let country of CountryList" value="{{country.CountryId}}" ngSelected="RegisterEntity.CountryId==country.CountryId">{{country.CountryName}}</option></select>
+						 <span class="error_span"  *ngIf="(CountryId.dirty && CountryId.invalid) || (CountryId.pristine && submitted)"> 
+							<span *ngIf="CountryId.errors.required || (CountryId.pristine && submitted)">Please select your country </span>
+						</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <label><span>*</span>State / Province </label>
+                 <select class="form-control "  #StateId="ngModel" [(ngModel)]="RegisterEntity.StateId" name="StateId"
+				 [ngClass]="{red_border: (StateId.dirty && StateId.invalid) || (StateId.pristine && submitted)}" required>  
+						<option value="" ngSelected='RegisterEntity.StateId==""'>Select State</option>
+						<option *ngFor="let state of stateList" value="{{state.StateId}}" ngSelected="RegisterEntity.StateId==state.StateId">{{state.StateName}}</option>
+				</select>
+				 <span class="error_span"  *ngIf="(StateId.dirty && StateId.invalid) || (StateId.pristine && submitted)"> 
+							<span *ngIf="StateId.errors.required || (StateId.pristine && submitted)">Please select your state</span>
+						</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label><span>*</span>City </label>
+                            <input type="text" class="form-control " #City="ngModel" [(ngModel)]="RegisterEntity.City" name="City" pattern="[a-zA-Z ]{2,100}"
+							[ngClass]="{red_border: (City.dirty && City.invalid) || (City.pristine && submitted)}" required/>  
+						  <span class="error_span" *ngIf="(City.dirty && City.invalid) || (City.pristine && submitted)"> 
+							<span *ngIf="City.errors.required || (City.pristine && submitted)">Please enter your City</span>
+							<span *ngIf="City.errors && City.errors.pattern">Please enter valid city</span>
+						</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label><span>*</span>Zip code</label>
+                             <input type="text" class="form-control" #ZipCode="ngModel" [(ngModel)]="RegisterEntity.ZipCode" name="ZipCode"
+							 pattern="[0-9]{2,5}" maxlength="5"
+							[ngClass]="{red_border: (ZipCode.dirty && ZipCode.invalid) || (ZipCode.pristine && submitted)}" required/>  
+						  <span class="error_span" *ngIf="(ZipCode.dirty && ZipCode.invalid) || (ZipCode.pristine && submitted)"> 
+							<span *ngIf="ZipCode.errors.required || (ZipCode.pristine && submitted)">Please enter your zipcode</span>
+							<span *ngIf="ZipCode.errors && ZipCode.errors.pattern">Please enter valid zipcode</span>
+						</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        
+		  <button class="next_btn pull-right" [disabled]="btn_disable" id="employee_btn"  type="submit"><span>Submit</span></button>
+      <div class="clearfix"></div>
+ 
+		  </div>
+        </div>
+    </form>
+    <div class="clearfix"></div>
+     
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="modal fade bs-example-modal-sm" id="submit_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="text-center no_padding">Are you sure you want to {{modelvar}} ?</p>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="next_btn" id="yes_btn" (click)="finalsubmit(RegisterFormfinal)"><span>Yes</span></button>
+        <button type="button" class="red_btn" data-dismiss="modal"><span>No</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+

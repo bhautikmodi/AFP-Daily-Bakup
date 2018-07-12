@@ -1,0 +1,96 @@
+
+
+<!-- Inner Section -->
+<div class="inner_content height_zero filter_block">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>AFP Corporate Training Skills Assessment</h2>
+            <h1>Sales Dashboard</h1>
+          </div>
+    <form class="form-validate" role="form" #SalesDashboardForm="ngForm" (ngSubmit)="addSalesDashboard(SalesDashboardForm)">
+      <div class="col-md-3 col-sm-5">
+        <div class="form-group">
+          <label><span>*</span>Search User</label>
+          <!-- <select class="form-control" #CompanyId="ngModel" 
+          [(ngModel)]="SalesDashboardEntity.CompanyId"
+               name="CompanyId"  >  
+                 <option value="" ngSelected='SalesDashboardEntity.CompanyId==""' >Select Company </option>
+                 <option *ngFor="let Company of CompanyList" value="{{Company.CompanyId}}" 
+                 ngSelected="SalesDashboardEntity.CompanyId==Company.CompanyId">{{Company.Name}}</option>
+               </select> -->
+
+               <ng-select [options]="CompanyList"   placeholder="Please Select Company" #CompanyId="ngModel" (ngModel)="SalesDashboardEntity.CompanyId" (selected)="onSelected($event)">
+              </ng-select>
+<!--            
+           <select class="form-control select2" #CompanyId="ngModel (change)="getUserList(SalesDashboardForm)"
+          [(ngModel)]="SalesDashboardEntity.CompanyId"  (selected)="onSelected($event)"name="CompanyId "  >  
+                 <option value="" ngSelected='SalesDashboardEntity.CompanyId==""' >Select Company </option>
+                 <option *ngFor="let Company of CompanyList" value="{{Company.CompanyId}}" 
+                 ngSelected="SalesDashboardEntity.CompanyId==Company.CompanyId">{{Company.Name}}</option>
+               </select>{{SalesDashboardEntity.CompanyId}} -->
+             </div>
+           </div>
+<!--      
+     <div class="col-md-3 col-sm-3">
+       <div class="form-group">
+         <label><span>*</span>User Name</label>
+         <select class="form-control" #UserId="ngModel" [(ngModel)]="SalesDashboardEntity.UserId"
+               name="UserId" >  
+                 <option value="" ngSelected='SalesDashboardEntity.UserId==""' >Select User Name </option>
+                 <option *ngFor="let User of UserList" value="{{User.UserId}}" 
+                 ngSelected="SalesDashboardEntity.UserId==User.UserId">{{User.Name}}</option>
+               </select>
+								
+        </div>
+      </div> -->
+     
+      <div class="col-md-3 col-sm-4 col-xs-6 button_6">
+        <button class="next_btn margin_btn_15" type="submit"><span>Filter</span></button>
+        <button (click)="clearForm(SalesDashboardForm)" class="red_btn margin_btn_15"><span>Clear</span></button>
+      
+      </div>
+		<div class="col-md-6 col-sm-3 col-xs-6 button_6">
+      <a routerLink="/viewreport" class="red_btn margin_btn_15 pull-right"><span>View Reports</span></a>
+		</div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="user_section">
+  <div class="container">
+    <div class="row">
+        <h3 class="text-center" *ngIf="Usersearch!=''">Users</h3>
+      <div class="coontainer_block"><div class="col-md-3 col-sm-6" *ngFor="let UserL of Usersearch | paginate: { itemsPerPage:8, currentPage: p};let i = index ">
+        <div class="user_box" >
+				  <input type="hidden"  name="id" value="{{UserL.UserId}}"/>
+          <div class="user_name">{{UserL.FirstName}}</div>
+          <p><strong>Email : </strong>{{UserL.EmailAddress}}<br>
+            <strong>Phone Number : </strong>{{UserL.PhoneNumber}}<br>
+            <strong>Company Name : </strong>{{UserL.Name}}<br>
+            <strong>Last Assessment : </strong><span *ngIf="UserL.lastdate!=NULL">{{UserL.lastdate | date :'MM/dd/yyyy'}}</span><span *ngIf="UserL.lastdate==NULL">NA</span><br>
+            <strong>Total Assessment : </strong>{{UserL.totalass}}</p>
+            <div *ngIf="UserL.totalass>0">
+              <button class="arrow_btn pull-right" routerLink="/user-assessment-list/{{UserL.UserId}}"  type="button"><i class="fa fa-angle-right"></i></button>
+          </div>
+          </div>
+      </div></div>
+      
+     <div class="clearfix"></div>
+     
+     <div class="clearfix"></div>
+      <div class="col-md-12">
+          <pagination-controls (pageChange)="p=$event" *ngIf="Usersearch!=''"></pagination-controls>
+          <div class="row"  *ngIf="Usersearch==''" >
+              <div class="col-md-12">
+                <h2> No Assessment Found </h2>
+              </div>
+              </div>
+        <div class="clearfix visible-xs"></div>
+    <!-- <button class="next_btn pull-right" [disabled]="vardisabled" type="button"  (click)="clickid()"><span>Next</span></button> -->
+      </div> 
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>

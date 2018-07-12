@@ -1,0 +1,111 @@
+<!--  page-wrapper -->
+        <div id="page-wrapper">
+
+            
+            <div class="row">
+                 <!--  page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">State</h1>
+                </div>
+                 <!-- end  page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             State
+							 <div class="btn-group pull-right add-right">
+						  		<a routerLink="/admin/state/list" class="btn btn-danger btn-add">
+						  		<i class="fa fa-reply fa-fw"></i> Back
+						  		</a>
+							</div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!--<div class="col-lg-12">-->
+                                    <form class="form-validate" role="form" #stateForm="ngForm" (ngSubmit)="addState(stateForm)">
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Country</label>
+                                           <select class='select-option' required class="form-control" #CountryId="ngModel"
+										   [(ngModel)]="stateEntity.CountryId" name="CountryId" [ngClass]="{red_border: (CountryId.dirty && CountryId.invalid) || (CountryId.pristine && submitted)}">
+										    <option value="" ngSelected='stateEntity.CountryId==""'>Select</option>
+										<option class='option' *ngFor='let country of CountryList' 
+										[value]="country.CountryId">{{country.CountryName}}</option></select>
+										<span class="error_span"  *ngIf="(CountryId.dirty && CountryId.invalid) || (CountryId.pristine && submitted)"> 
+												<span *ngIf="CountryId.errors.required || (CountryId.pristine && submitted)">Please select Country </span>
+											</span>
+                                        </div>
+										
+										
+										
+                                        <div class="form-group col-md-6">
+                                            <label><span class="required">*</span>State Name</label>
+											<input type="text" class="form-control" #StateName="ngModel" [(ngModel)]="stateEntity.StateName" class="form-control" maxlength="100" name="StateName" pattern="[a-zA-Z ]{2,}"
+											[ngClass]="{red_border: (StateName.dirty && StateName.invalid) || (StateName.pristine && submitted)}" required>
+											<span class="error_span" *ngIf="(StateName.dirty && StateName.invalid) || (StateName.pristine && submitted)"> 
+											<span *ngIf="StateName.errors.required || (StateName.pristine && submitted)">Please enter State</span>
+											<span class="error_span" *ngIf="StateName.errors && StateName.errors.pattern">
+												Please enter valid State name
+										  </span>
+											</span>
+                                        </div>
+										
+										
+										
+										
+										
+										
+										
+										
+										<div class="clearfix"></div>
+
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>State Abbreviation</label>
+											<input type="text" class="form-control "style="text-transform: uppercase;" #StateAbbreviation="ngModel" [(ngModel)]="stateEntity.StateAbbreviation" class="form-control" maxlength="3" name="StateAbbreviation" pattern="[a-zA-Z]{2,}" 
+											[ngClass]="{red_border: (StateAbbreviation.dirty && StateAbbreviation.invalid) || (StateAbbreviation.pristine && submitted)}" required>
+											<span class="error_span" *ngIf="(StateAbbreviation.dirty && StateAbbreviation.invalid) || (StateAbbreviation.pristine && submitted)"> 
+											<span *ngIf="StateAbbreviation.errors.required || (StateAbbreviation.pristine && submitted)">Please enter State Abbreviation</span>
+											</span>
+											<span class="error_span" *ngIf="StateAbbreviation.errors && StateAbbreviation.errors.pattern">
+												Please enter valid State Abbreviation
+										  </span>
+                                        </div>
+										
+										
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Active?</label>
+                                            <br>
+											<div class="radio_box">
+											  <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="stateEntity.IsActive" required/>
+											  <label for="role1">Yes</label>
+											</div>
+											<div class="radio_box">
+											  <input type="radio" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="stateEntity.IsActive" required/>
+											  <label for="role2">No </label>
+											</div><br>
+											<span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+												<span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select Active Status</span>
+											  </span>
+
+										</div>
+										
+										<div class="clearfix"></div>
+										<div class="form-btn col-md-12">
+											<button type="submit" class="btn sub-btn"><span>Submit</span></button>
+											<button type="button" *ngIf="stateEntity.StateId==0" (click)="clearForm(stateForm)" class="btn res-btn"><span>Clear</span></button>
+										</div>
+                                    </form>
+                                <!--</div>-->
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+            
+        </div>
+        <!-- end page-wrapper -->

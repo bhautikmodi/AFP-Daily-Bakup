@@ -1,0 +1,249 @@
+<!-- <div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="headingOne">
+    <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">By Domain<span class="icon_span"></span></a> </h4>
+  </div>
+  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+    <div class="panel-body pie_body">
+      <div class="pie_chart" id="domain_chart"></div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<!-- Inner Section -->
+<div class="inner_content height_zero sales_detail">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>AFP Corporate Training Skills Assessment</h2>
+            <h1>Assessment by {{assessmentData.FirstName}} </h1>
+            
+            <a routerLink="/user-assessment-list/{{assessmentData.UserId}}" class="back_btn"><span><i class="fa fa-reply"></i>Back to User Dashboard</span></a>
+			<div class="clearfix visible-xs"></div>
+            <h3>{{assessmentData.AssessmentName}}</h3>
+
+			<div class="clearfix visible-xs"></div>
+
+            <h4  class="h4_nomargin"><span>Date Taken :</span> {{assessmentData.EndTime | date:'MM-dd-yyyy'}}</h4>
+            <h4><span>Team Size :</span> {{assessmentData.TeamSize}} <span>| Covered KSA :</span> {{assessmentData.totalksa}} 
+              <!-- <span>| Time Taken :</span> 01:12:34 -->
+            </h4>
+			
+            
+            <p class="padding_15">{{assessmentData.Description}} </p>
+            <div class="text-center"><a href="#" class="red_btn" data-toggle="modal" data-target="#PreviewModal"><span>View All KSA Rating</span></a></div>
+          </div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="sales_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+	  
+	  
+	  <div class="domain_desc"> 
+	  <h3 class="text-center">Result</h3>
+              <ul _ngcontent-c5="" class="nav nav-tabs" role="tablist">
+                <!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><li _ngcontent-c5="" role="Definition" class="active" ng-reflect-ng-class="[object Object]"><a _ngcontent-c5="" data-toggle="tab" role="tab" href="#7"> Assessment Result </a></li><li _ngcontent-c5="" role="Definition" ng-reflect-ng-class="[object Object]"><a _ngcontent-c5="" data-toggle="tab" role="tab" href="#8">By Domain by Rating Scale</a></li><li _ngcontent-c5="" role="Definition" ng-reflect-ng-class="[object Object]"><a _ngcontent-c5="" data-toggle="tab" role="tab" href="#9"> By Competency Area by Rating Scale</a></li>
+              </ul>
+              <div _ngcontent-c5="" class="tab-content">
+                <!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><div _ngcontent-c5="" class="tab-pane active" role="tabpanel" ng-reflect-klass="tab-pane" ng-reflect-ng-class="[object Object]" id="7">
+                   <div id="gneraluser_result" class="generaluser_chart_block"></div>
+                </div><div _ngcontent-c5="" class="tab-pane" role="tabpanel" ng-reflect-klass="tab-pane" ng-reflect-ng-class="[object Object]" id="8">
+                   <div id="chartdiv" class="generaluser_chart_block"></div>	
+                </div><div _ngcontent-c5="" class="tab-pane" role="tabpanel" ng-reflect-klass="tab-pane" ng-reflect-ng-class="[object Object]" id="9">
+                     <div id="chartdiv1" class="generaluser_chart_block"></div>
+                </div><div _ngcontent-c5="" class="tab-pane" role="tabpanel" ng-reflect-klass="tab-pane" ng-reflect-ng-class="[object Object]" id="10">
+                    <table _ngcontent-c5="" class="table table-hover table-bordered">
+                        <tbody _ngcontent-c5=""> 
+                          <tr _ngcontent-c5="">
+                            <th _ngcontent-c5="" class="text-left width_20">Competency Area</th>
+                            <th _ngcontent-c5="" class="text-left width_80">Description</th>
+                          </tr>
+                         
+                          <!--bindings={
+  "ng-reflect-ng-for-of": "[object Object]"
+}--><tr _ngcontent-c5="">
+                              <td _ngcontent-c5="">Effective Communications heading3</td>
+                              <td _ngcontent-c5="">&lt;p&gt;dfgdfg&lt;/p&gt;
+</td>
+                            </tr>
+                         
+                        </tbody>
+                      </table>
+                </div><div _ngcontent-c5="" class="tab-pane" role="tabpanel" ng-reflect-klass="tab-pane" ng-reflect-ng-class="[object Object]" id="11">
+                    <table _ngcontent-c5="" class="table table-hover table-bordered">
+                        <tbody _ngcontent-c5=""> 
+                          <tr _ngcontent-c5="">
+                            <th _ngcontent-c5="" class="text-left width_20">Competency Area</th>
+                            <th _ngcontent-c5="" class="text-left width_80">Description</th>
+                          </tr>
+                         
+                          <!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><tr _ngcontent-c5="">
+                              <td _ngcontent-c5="">Influencing and Negotiating heading4</td>
+                              <td _ngcontent-c5="">&lt;p&gt;dfgdfg&lt;/p&gt;
+</td>
+                            </tr><tr _ngcontent-c5="">
+                              <td _ngcontent-c5="">Project Management heading4</td>
+                              <td _ngcontent-c5="">&lt;p&gt;dfgdfg&lt;/p&gt;
+</td>
+                            </tr>
+                         
+                        </tbody>
+                      </table>
+                </div><div _ngcontent-c5="" class="tab-pane" role="tabpanel" ng-reflect-klass="tab-pane" ng-reflect-ng-class="[object Object]" id="12">
+                    <table _ngcontent-c5="" class="table table-hover table-bordered">
+                        <tbody _ngcontent-c5=""> 
+                          <tr _ngcontent-c5="">
+                            <th _ngcontent-c5="" class="text-left width_20">Competency Area</th>
+                            <th _ngcontent-c5="" class="text-left width_80">Description</th>
+                          </tr>
+                         
+                          <!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><tr _ngcontent-c5="">
+                              <td _ngcontent-c5="">Budgeting Processes heading5</td>
+                              <td _ngcontent-c5="">&lt;p&gt;dfgdfg&lt;/p&gt;
+</td>
+                            </tr><tr _ngcontent-c5="">
+                              <td _ngcontent-c5="">Understanding Financial concepts heading5</td>
+                              <td _ngcontent-c5="">&lt;p&gt;dfgdfg&lt;/p&gt;
+</td>
+                            </tr>
+                         
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="inner_grey margin_top_grey">
+          <div class="course_block">
+              <h3 class="text-center">Recommended Course(s)</h3>
+            <div class="clearfix"></div>
+            <div class="panel-group" id="courseaccordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default" *ngFor="let domain of rcourse; let i=index; let f=first">
+                <div class="panel-heading" role="tab" id="courseheading{{i+1}}">
+                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" [ngClass]="{collapsed: !f}" data-parent="#courseaccordion" href="#coursecollapse{{i+1}}" aria-expanded="true" attr.aria-controls="coursecollapse{{i+1}}">{{domain.Name}} <span class="icon_span"></span></a> </h4>
+                </div>
+                <div id="coursecollapse{{i+1}}" class="panel-collapse collapse" [ngClass]="{in: f}" role="tabpanel"  attr.aria-labelledby="courseheading{{i+1}}">
+                  <div class="panel-body">
+                    <div class="table-responsive"><table class="table table-bordered">
+                      <tr>
+                        <th class="text-left width_30">Rating</th>
+                        <th class="text-left width_80">Course(s)</th>
+                      </tr>
+                      <tr *ngFor="let rscale of domain.rs">
+                        <td><span *ngIf="rscale.Name=='General Awareness'">1</span> <span *ngIf="rscale.Name=='Developing'">2</span> <span *ngIf="rscale.Name=='Intermediate'">3</span> <span *ngIf="rscale.Name=='Advanced'">4</span> - {{rscale.Name}}</td>
+                        <td class="text-left"><ul class="li_list">
+                           <span *ngIf="rscale.course"><li *ngFor="let c of rscale.course">{{c.Name}} </li></span> 
+                           <span *ngIf="rscale.course==''">No Course Available</span>
+                          </ul></td>
+                      </tr>
+                    </table></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <a href="#" data-toggle="modal" data-target="#CourseModal" class="next_btn pull-right"><span>View All Recommended Courses</span></a>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+
+<!-- Preview Popup -->
+<div class="modal fade" id="PreviewModal" tabindex="-1" role="dialog" aria-labelledby="PreviewModal" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h3 class="modal-title" id="myModalLabel">KSA Rating</h3>
+      </div>
+      <div class="modal-body">
+        <div class="preview_ksa">
+          <table class="table table-bordered table-hover no_margin">
+        
+              <tr>
+                <th class="text-center width_5">No.</th>
+                <th class="width_60">Knowledge, Skills and Abilities</th>
+                <th class="text-left width_30">Selected Rating</th>
+              </tr>
+            
+			 </table>
+          <div class="scroll_table">
+            <table class="table table-bordered table-hover no_margin">
+          
+              <tr *ngFor="let ksa of ksaList; let i = index">
+                <td class="text-center width_5">{{i+1}}</td>
+                <td class="width_60">{{ksa.Name}}</td>
+                <td class="width_30">{{ksa.RatingScaleId}} - <span *ngIf="ksa.RatingScaleId==1">General Awareness</span> <span *ngIf="ksa.RatingScaleId==2">Developing</span> <span *ngIf="ksa.RatingScaleId==3">Intermediate</span> <span *ngIf="ksa.RatingScaleId==4">Advanced</span></td>
+              </tr>
+           
+          </table>
+			</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="next_btn" data-dismiss="modal"><span>Close</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Preview Popup --> 
+
+<!-- Courses Popup -->
+<div class="modal fade" id="CourseModal" tabindex="-1" role="dialog" aria-labelledby="CourseModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h3 class="modal-title">Recommended Course(s)</h3>
+      </div>
+      <div class="modal-body">
+        <div class="course_rec">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <th class="text-left width_30">Rating</th>
+              <th class="text-left width_80">Course(s)</th>
+            </tr>
+          </table>
+          <div class="scroll_course">
+            <div class="course_boxes" *ngFor="let domain of allcourse; let i=index; let f=first">
+              <div class="domain_name">{{domain.Name}} </div>
+              <table class="table table-hover">
+                <tr *ngFor="let rscale of domain.rs">
+                  <td class="border_right width_30"><span *ngIf="rscale.rnm=='General Awareness'">1</span> <span *ngIf="rscale.rnm=='Developing'">2</span> <span *ngIf="rscale.rnm=='Intermediate'">3</span> <span *ngIf="rscale.rnm=='Advanced'">4</span> - {{rscale.rnm}}</td>
+                  <td class="text-left width_80"><ul class="li_list">
+                      <li *ngFor="let c of rscale.course">{{c.cnm}}</li>
+                    </ul></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="next_btn" data-dismiss="modal"><span>Close</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Courses Popup --> 
+
+<!-- End Inner Section --> 

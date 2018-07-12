@@ -1,0 +1,65 @@
+<header>
+  <div class="container ">
+    <div class="row"> 
+      <!-- Logo -->
+      <div class="{{db_mode}}"></div>
+      <div class="col-md-3 col-sm-3 col-xs-3"> 
+        <div class="logo"> <a (click)="home()"><img src="assets/images/logo.png" alt="Association for Financial Professionals - AFP" title="Association for Financial Professionals - AFP" class="img-responsive" /></a> </div>
+      </div>
+      <!-- End Logo --> 
+    
+     <div *ngIf="globals.authData==undefined && globals.check_login">
+        <ul class="account_menu">
+          <li><a (click)="register()"> <i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>   
+          <!--<li><a (click)="register()"> <i class="fa fa-sign-in" aria-hidden="true"></i> Register</a></li>   -->
+        </ul>
+      </div>
+
+    
+      <div *ngIf="globals.authData==undefined && !globals.check_login">
+        <ul class="account_menu">
+          <li><a routerLink="/login/"> <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>   
+         <!-- <li><a (click)="log()"> <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>   -->
+        </ul>
+      </div>
+      
+
+    
+      <!-- <div class="col-md-10 col-sm-9 col-xs-9 text-right" *ngIf="globals.authData==undefined">
+        <ul class="account_menu">
+          <li><a routerLink="/login"> <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>   
+        </ul>
+      </div> -->
+      
+
+
+		<div *ngIf="globals.authData!=undefined">
+        <ul class="account_menu">
+          <li><a href="#" class="dropdown-toggle dashboard-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-user" aria-hidden="true"></i> {{ globals.authData.FirstName}} <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+              <li><a *ngIf="globals.authData.RoleId!=3" routerLink="/sales-admin-dashboard">Dashboard</a>
+                <a *ngIf="globals.authData.RoleId==3" routerLink="/dashboard">Dashboard</a>
+              </li>
+              <li *ngIf="globals.authData.RoleId!=3"><a (click)="AdminLogin()">Administrator</a></li>
+              <li><a routerLink="/register/edit/{{globals.authData.UserId}}">Edit Profile</a></li>
+              <li><a routerLink="/changepass/">Change Password</a></li>
+              <li><a routerLink="/contactus/edit/{{globals.authData.UserId}}">Contact Us</a></li>
+              <li><a  (click)="logout()">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5 col-sm-6 col-md-offset-4 col-sm-offset-3">
+        <div class="four_strips">
+          <div class="one_strip"></div>
+          <div class="two_strip"></div>
+          <div class="three_strip"></div>
+          <div class="four_strip"></div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+	
+  </div>
+</header>

@@ -1,0 +1,107 @@
+ <div id="page-wrapper">
+            <div class="row">
+                 <!-- page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{header}}  Course</h1>
+                </div>
+                <!--end page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Course
+							<div class="btn-group pull-right add-right">
+                       <a routerLink="/admin/course/list" class="btn btn-danger btn-add">
+                       <i class="fa fa-reply fa-fw"></i> Back
+                       </a>
+                 </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!--<div class="col-lg-12">-->
+                                     <form class="form-validate"  #CourseForm="ngForm" (ngSubmit)="addCourse(CourseForm)">
+                                        <div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Name</label>
+                                            <input type="text"  #Name="ngModel" [(ngModel)]="CourseEntity.Name" class="form-control"
+											 maxlength="250" name="Name" pattern="[a-zA-Z0-9.'/,-./;/:/(/&/?/)/./’/ ]{2,}" [ngClass]="{red_border: (Name.dirty && Name.invalid) || (Name.pristine && submitted)}" required/>
+											<span class="error_span" *ngIf="(Name.dirty && Name.invalid) || (Name.pristine && submitted)">
+								  <span *ngIf="Name.errors && Name.errors.required">
+												Please enter Course Name
+											</span>
+										  
+										  <span *ngIf="Name.errors && Name.errors.pattern">
+												Please input a valid Course Name
+										  </span>
+								</span>
+                                        </div>
+										<div class="form-group col-md-6">
+                                    <label><span class="required">*</span>Domain</label>
+									<select class="form-control" #DomainId="ngModel" [(ngModel)]="CourseEntity.DomainId"
+								name="DomainId" [ngClass]="{red_border: (DomainId.dirty && DomainId.invalid) || (DomainId.pristine && submitted)}" required>  
+									<option value="" ngSelected='CourseEntity.DomainId==""'>Select</option>
+									<option *ngFor="let domain of domainList" value="{{domain.DomainId}}" 
+									ngSelected="CourseEntity.DomainId==domain.DomainId">{{domain.Name}}</option>
+								</select>
+                                    <span class="error_span" *ngIf="(DomainId.dirty && DomainId.invalid) || (DomainId.pristine && submitted)"> 
+                                        <span *ngIf="DomainId.errors.required || (DomainId.pristine && submitted)">Please select Domain</span>
+                                      </span>
+                                  </div>
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Key Concepts</label>
+                                            <textarea  #KeyConcepts="ngModel" [(ngModel)]="CourseEntity.KeyConcepts" class="form-control" 
+											name="KeyConcepts" [ngClass]="{red_border: (KeyConcepts.dirty && KeyConcepts.invalid) || (KeyConcepts.pristine && submitted)}" required></textarea>
+													<span class="error_span"  *ngIf="(KeyConcepts.dirty && KeyConcepts.invalid) || (KeyConcepts.pristine && submitted)"> 
+												<span *ngIf="KeyConcepts.errors.required || (KeyConcepts.pristine && submitted)">Please enter Key Concepts of Course</span>
+												<!-- <span *ngIf="KeyConcepts.errors && KeyConcepts.errors.pattern">Please enter valid Key Concepts of Course</span> -->
+											</span>
+                                        </div>
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Course Level</label>
+								<select class="form-control" #CourseLevelId="ngModel" [(ngModel)]="CourseEntity.CourseLevelId"
+								name="CourseLevelId" [ngClass]="{red_border: (CourseLevelId.dirty && CourseLevelId.invalid) || (CourseLevelId.pristine && submitted)}" required>  
+									<option value="" ngSelected='CourseEntity.CourseLevelId==""'>Select</option>
+									<option *ngFor="let CourseLevel of CourseLevelList" value="{{CourseLevel.ConfigurationId}}" 
+									ngSelected="CourseEntity.CourseLevelId==CourseLevel.ConfigurationId">{{CourseLevel.Value}}</option>
+								</select>
+									<span class="error_span" *ngIf="(CourseLevelId.dirty && CourseLevelId.invalid) || (CourseLevelId.pristine && submitted)">  
+										<span *ngIf="CourseLevelId.errors.required || (CourseLevelId.pristine && submitted)">
+											Please select Cource Level
+										</span> 
+									</span> 
+                                           
+                                        </div>
+										
+											<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Active?</label>
+                                            <br>
+									<div class="radio_box">
+									  <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="CourseEntity.IsActive" required/>
+									  <label for="role1">Yes</label>
+									</div>
+									<div class="radio_box">
+									  <input type="radio" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="CourseEntity.IsActive" required/>
+									  <label for="role2">No </label>
+									</div><br>
+									<span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+										<span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select Active Status</span>
+									  </span>
+                                        </div>
+										<div class="clearfix"></div>
+										<div class="form-btn">
+											<button type="submit" class="btn sub-btn"><span>Submit</span></button>
+											<button type="button" *ngIf="CourseEntity.CourseId==0" (click)="clearForm(CourseForm)" class="btn res-btn"><span>Clear</span></button>
+										</div>
+                                    </form>
+                                </div>
+                            </div>
+                        <!--</div>-->
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+        </div>

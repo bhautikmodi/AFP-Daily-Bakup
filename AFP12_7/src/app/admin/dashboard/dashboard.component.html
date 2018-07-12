@@ -1,0 +1,78 @@
+<div id="page-wrapper">
+  <!--<div id="page-wrapper" style="min-height: 750px;">-->
+    <div class="row"> 
+      <!-- Page Header -->
+      <div class="col-lg-12">
+        <h1 class="page-header">Dashboard</h1>
+      </div>
+      <!--End Page Header --> 
+    </div>
+    <div class="row"> 
+      <!-- Welcome -->
+      <div class="col-lg-12">
+        <div class="alert alert-info welcome-info"> <i class="fa fa-folder-open"></i> Welcome back {{globals.authData.FirstName}}! </div>
+      </div>
+      <!--end  Welcome --> 
+    </div>
+    <div class="row"> 
+     
+      
+	  <div class="col-lg-4 dash-box">
+        <a routerLink="/admin/users/list" ><div class="panel panel-primary text-center no-boder">
+          <div class="panel-body dash-panel"> <i class="fa fa-users fa-3x dash-area1"></i>
+            <h3 class="dash-area1">{{Dashboard.user}} </h3>
+          </div>
+          <div class="panel-footer d-blue"> <span class="panel-eyecandy-title">Total Users </span> </div>
+        </div>
+        </a>
+      </div>
+      <div class="col-lg-4 dash-box">
+        <a routerLink="/admin/company/list" ><div class="panel panel-primary text-center no-boder">
+          <div class="panel-body dash-panel"> <i class="fa fa-building fa-3x dash-area2"></i>
+            <h3 class="dash-area2">{{Dashboard.Company}} </h3>
+          </div>
+          <div class="panel-footer d-green"> <span class="panel-eyecandy-title">Total Companies </span> </div>
+        </div>
+        </a>
+      </div>
+      
+      <div class="col-lg-4 dash-box">
+        <a routerLink="/admin/domain/list" ><div class="panel panel-primary text-center no-boder">
+          <div class="panel-body dash-panel"> <i class="fa fa-sitemap fa-3x dash-area4"></i>
+            <h3 class="dash-area4" >{{Dashboard.domain}} </h3>
+          </div>
+          <div class="panel-footer light-blue "> <span class="panel-eyecandy-title">Total Domains </span> </div>
+        </div>
+        </a>
+      </div>
+      <div class="col-lg-4 dash-box">
+        <a routerLink="/admin/competency-area/list" ><div class="panel panel-primary text-center no-boder">
+          <div class="panel-body dash-panel"> <i class="fa fa-tasks fa-3x dash-area5"></i>
+            <h3 class="dash-area5">{{Dashboard.Carea}}</h3>
+          </div>
+          <div class="panel-footer purple"> <span class="panel-eyecandy-title">Total Competencies
+ </span> </div>
+        </div>
+        </a>
+      </div>
+	  <div class="col-lg-4 dash-box">
+        <a routerLink="/admin/ksa/list" ><div class="panel panel-primary text-center no-boder">
+          <div class="panel-body dash-panel"> <i class="fa fa-question fa-3x dash-area6"></i>
+            <h3 class="dash-area6">{{Dashboard.Tksa}} </h3>
+          </div>
+          <div class="panel-footer light-pink"> <span class="panel-eyecandy-title">Total KSAs</span> </div>
+        </div>
+        </a>
+      </div>	  
+      <div class="col-lg-4 dash-box">
+        <a routerLink="/admin/course/list" > <div class="panel panel-primary text-center no-boder">
+           <div class="panel-body dash-panel"> <i class="fa fa-certificate fa-3x dash-area3"></i>
+             <h3 class="dash-area3">{{Dashboard.Course}}  </h3>
+           </div>
+           <div class="panel-footer yellow"> <span class="panel-eyecandy-title">Total Courses</span> </div>
+         </div>
+         </a>
+       </div>
+	    
+    </div>
+  </div>

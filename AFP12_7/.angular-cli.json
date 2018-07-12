@@ -1,0 +1,124 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "afp"
+  },
+  "apps": [
+    {"name":"app",
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [
+		"assets/js/jquery-1.11.3.min.js",
+    "assets/js/bootstrap.min.js",
+    "assets/js/jquery.bxslider.js",
+    "assets/js/jquery.flexslider.js", 
+    "assets/js/perfect-scrollbar.js",	   
+    "assets/js/amcharts.js",
+    "assets/js/serial.js",
+    "assets/js/pie.js",	  
+	"assets/js/responsiveamcharts.js",
+    "assets/js/select2.min.js",
+    "assets/js/custom.js",
+	
+        "assets/assets-admin/plugins/metisMenu/jquery.metisMenu.js",
+        "assets/assets-admin/scripts/perfect-scrollbar.js",
+        "assets/assets-admin/scripts/siminta.js",
+        "assets/assets-admin/plugins/morris/raphael-2.1.0.min.js",
+        "assets/assets-admin/plugins/morris/morris.js",
+        "assets/assets-admin/scripts/dashboard-demo.js",
+        "assets/assets-admin/scripts/custom.js",
+		"assets/assets-admin/scripts/jquery.dataTables.min.js",
+		"assets/assets-admin/scripts/dataTables.buttons.min.js",
+		"assets/assets-admin/scripts/buttons.print.min.js",
+		"assets/assets-admin/scripts/jszip.min.js" ,
+		"assets/assets-admin/scripts/buttons.html5.min.js" 
+	  
+	  ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+	{"name":"app1",
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets1",
+        "favicon1.ico"
+      ],
+      "index": "index1.html",
+      "main": "main1.ts",
+      "polyfills": "polyfills1.ts",
+      "test": "test1.ts",
+      "tsconfig": "tsconfig.app1.json",
+      "testTsconfig": "tsconfig.spec1.json",
+      "prefix": "app1",
+      "styles": [
+        "styles1.css"
+      ],
+      "scripts": [
+        "assets1/plugins/jquery-1.10.2.js",
+        "assets1/plugins/bootstrap/bootstrap.min.js",
+        "assets1/plugins/dataTables/jquery.dataTables.js",
+        "assets1/plugins/dataTables/dataTables.bootstrap.js",
+        "assets1/plugins/metisMenu/jquery.metisMenu.js",
+        "assets1/scripts/perfect-scrollbar.js",
+        "assets1/scripts/siminta.js",
+        "assets1/plugins/morris/raphael-2.1.0.min.js",
+        "assets1/plugins/morris/morris.js",
+        "assets1/scripts/dashboard-demo.js",
+        "assets1/scripts/custom.js"       
+      ],  
+      "environmentSource": "environments1/environment.ts",
+      "environments": {
+        "dev": "environments1/environment.ts",
+        "prod": "environments1/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}
+
+

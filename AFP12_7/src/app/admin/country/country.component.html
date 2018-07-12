@@ -1,0 +1,103 @@
+  <div id="page-wrapper">
+            <div class="row">
+                 <!-- page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{header}} Country</h1>
+                </div>
+                <!--end page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Country
+							<div class="btn-group pull-right add-right">
+
+						  		<a routerLink="/admin/country/list" class="btn btn-danger btn-add">
+						  		<i class="fa fa-reply fa-fw"></i> Back
+						  		</a>
+							</div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!--<div class="col-lg-12">-->
+                                 <form class="form-validate"  #CountryForm="ngForm" (ngSubmit)="addCountry(CountryForm)">
+                                        <div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Country</label>
+											<input type="text"  #CountryName="ngModel" pattern="[a-zA-Z ]{2,}" maxlength="100" [(ngModel)]="CountryEntity.CountryName" class="form-control"
+											name="CountryName"  [ngClass]="{red_border: (CountryName.dirty && CountryName.invalid) || (CountryName.pristine && submitted)}" required/>		
+											<span class="error_span" *ngIf="(CountryName.dirty && CountryName.invalid) || (CountryName.pristine && submitted)">
+													<span *ngIf="CountryName.errors && CountryName.errors.required">
+														Please enter Country
+													</span>
+												  
+													<span *ngIf="CountryName.errors && CountryName.errors.pattern">
+														Please enter valid Country
+													</span>
+											</span>
+                                        </div>
+										
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Country Abbreviation</label>
+                                         
+											<input type="text"  #CountryAbbreviation="ngModel" pattern="[a-zA-Z]{2,}" maxlength="3"   [(ngModel)]="CountryEntity.CountryAbbreviation" class="form-control txtupper"
+											name="CountryAbbreviation" [ngClass]="{red_border: (CountryAbbreviation.dirty && CountryAbbreviation.invalid) || (CountryAbbreviation.pristine && submitted)}" required/>
+													<span class="error_span" *ngIf="(CountryAbbreviation.dirty && CountryAbbreviation.invalid) || (CountryAbbreviation.pristine && submitted)">
+								  <span *ngIf="CountryAbbreviation.errors && CountryAbbreviation.errors.required">
+												Please enter Country Abbreviation
+											</span>
+										  
+										  <span *ngIf="CountryAbbreviation.errors && CountryAbbreviation.errors.pattern">
+												Please enter valid Country Abbreviation
+										  </span>
+								</span>
+                                        </div>
+										<div class="clearfix"></div>
+										<div class="form-group col-md-6">
+                                            <label><span class="required">*</span>Phone Prefix</label>
+                                         
+											<input type="text"  #PhonePrefix="ngModel" pattern="[0-9+]{1,}" maxlength="11"   [(ngModel)]="CountryEntity.PhonePrefix" class="form-control"
+											name="PhonePrefix" [ngClass]="{red_border: (PhonePrefix.dirty && PhonePrefix.invalid) || (PhonePrefix.pristine && submitted)}" required/>
+													<span class="error_span" *ngIf="(PhonePrefix.dirty && PhonePrefix.invalid) || (PhonePrefix.pristine && submitted)">
+								  <span *ngIf="PhonePrefix.errors && PhonePrefix.errors.required">
+												Please enter Phone Prefix
+											</span>
+										  
+										  <span *ngIf="PhonePrefix.errors && PhonePrefix.errors.pattern">
+												Please enter valid Phone Prefix
+										  </span>
+								</span>
+                                        </div>
+										
+										<div class="form-group col-md-6">
+                                  <label><span class="required">*</span>Active?</label>
+														  
+									<br>
+									<div class="radio_box">
+									  <input type="radio"  name="IsActive" id="role1" value="1" #IsActive="ngModel" [(ngModel)]="CountryEntity.IsActive" required/>
+									  <label for="role1">Yes</label>
+									</div>
+									<div class="radio_box">
+									  <input type="radio" name="IsActive" id="role2" value="0" #IsActive="ngModel" [(ngModel)]="CountryEntity.IsActive" required/>
+									  <label for="role2">No </label>
+									</div><br>
+									<span class="error_span" *ngIf="(IsActive.dirty && IsActive.invalid) || (IsActive.pristine && submitted)"> 
+										<span *ngIf="IsActive.errors.required || (IsActive.pristine && submitted)">Please select Active Status</span>
+									  </span>
+
+                              </div>
+										<div class="clearfix"></div>
+										<div class="form-btn">
+											<button type="submit" class="btn sub-btn"><span>Submit</span></button>
+											<button type="button" *ngIf="CountryEntity.CountryId==0" (click)="clearForm(CountryForm)" class="btn res-btn"><span>Clear</span></button>
+										</div>
+                                    </form>
+                                </div>
+                            </div>
+                        <!--</div>-->
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,77 @@
+<div class="inner_content height_zero">
+  <!-- <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+          <h2>List of Registered Company</h2>
+            <h1>Company List</h1>
+            <div class="clearfix"></div>
+            <div id="carousel" class="flexslider ksa_list_block">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover no_margin" id="dataTables-example">
+                  <thead>
+                    <tr>
+                      <th class="width_8">No.</th>
+                      <th class="width_20">Company Name</th>
+                      <th class="width_15">Industry</th>
+                      <th class="width_13">Phone Number</th>
+                      <th class="width_20">Website</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let company of companyList; let i = index" >
+                    <td>{{i+1}}</td>
+                    <td>{{company.Name}}</td>
+                    <td>{{company.IndustryName}}</td>
+                    <td>{{company.PhoneNo}}</td>
+                    <td>{{company.Website}}</td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <h2>User's Assessments details</h2>
+          <h1>Users List</h1>
+          <a routerLink="/viewreport" class="back_btn margin_bottom pull-right"><span><i class="fa fa-reply"></i>Back to Reports</span></a> <!--<a routerLink="/report/{{userList.UserId}}" class="red_btn margin_bottom pull-left"><span>View Report</span></a> -->
+          <div class="clearfix"></div>
+          <div id="carousel" class="flexslider ksa_list_block">
+              <div class="table-responsive">
+<table class="table table-bordered table-hover no_margin" id="dataTables-example1">
+<thead>
+  <tr>
+    <th class="width_6">No.</th>
+   
+    <th class="width_6">User Name</th>
+    <th class="width_6">Company Name</th>
+    <th class="width_6">Total Assessments Complete</th>
+    <th class="width_6">Total Assessments Pending</th>
+
+
+  </tr>
+</thead>
+<tbody>
+<tr *ngFor="let userasses of userAssessList; let i = index" >
+  <td>{{i+1}}</td>
+  
+  <td>{{userasses.FirstName +" "+ userasses.LastName}}</td>
+  <td>{{userasses.Name}}</td>
+  <td>{{userasses.total}}</td>
+  <td>{{userasses.notgiven}}</td>
+  
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+</div></div>
+</div>
+</div>

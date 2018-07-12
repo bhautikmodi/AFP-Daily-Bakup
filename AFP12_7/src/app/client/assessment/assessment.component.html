@@ -1,0 +1,145 @@
+
+
+<!-- Inner Section -->
+
+<div class="inner_content height_zero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <h2>AFP Corporate Training Skills Assessment</h2>
+        <h1>{{ksaDetails.AssessmentName}}</h1>
+		  <p class="padding_30">{{ksaDetails.Description}}</p>
+        <!-- <h2> <p id="demo"></p></h2> -->
+        <div class="clearfix"></div>
+        <div id="carousel" class="flexslider ksa_list_block">
+          <ul class="slides">
+            <li *ngFor="let ksa1 of ksaList; let j = index;">
+              <div class="ksa_numbers">{{(6*j)+1}}-{{(6*j)+ksa1.row.length}} </div>
+              <div class="ksa_completes"><i id="ksa{{(6*j)+1}}_dots" *ngIf="((6*j)+1)<=totalksa" class="fa fa-circle-o"></i><i id="ksa{{(6*j)+2}}_dots" *ngIf="((6*j)+2)<=totalksa" class="fa fa-circle-o"></i><i id="ksa{{(6*j)+3}}_dots" *ngIf="((6*j)+3)<=totalksa" class="fa fa-circle-o"></i><i id="ksa{{(6*j)+4}}_dots" *ngIf="((6*j)+4)<=totalksa" class="fa fa-circle-o"></i><i id="ksa{{(6*j)+5}}_dots" *ngIf="((6*j)+5)<=totalksa" class="fa fa-circle-o"></i><i id="ksa{{(6*j)+6}}_dots" *ngIf="((6*j)+6)<=totalksa" class="fa fa-circle-o"></i></div>
+            </li>
+            <!-- <li>
+                      <div class="ksa_numbers">1-6</div>
+                      <div class="ksa_completes"><i id="ksa1_dots" class="fa fa-circle-o"></i><i id="ksa2_dots" class="fa fa-circle-o"></i><i id="ksa3_dots" class="fa fa-circle-o"></i><i id="ksa4_dots" class="fa fa-circle-o"></i><i id="ksa5_dots" class="fa fa-circle-o"></i><i id="ksa6_dots" class="fa fa-circle-o"></i></div>
+                  </li> -->
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+<div id='progress_bar'>
+    <div id='progress'>{{percent}}%</div>
+  </div>
+<div class="assessment_bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+          <p class="padding_15">Use the rating scale to evaluate your team on their knowledge, skills and abilities in FP&A. The definitions for the numbered rating options can be found in the drop down below. Make sure to answer all questions before submitting your assessment. You may save your work and come back later to complete the assessment if needed.</p>
+          <div class="panel-group" id="ratingaccordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="courseheadingOne">
+                  <h4 class="panel-title"> <a role="button" class="collapsed" data-toggle="collapse" data-parent="#courseaccordion" href="#coursecollapseOne" aria-expanded="true" aria-controls="coursecollapseOne"> Ratings Definition <span class="icon_span"></span></a> </h4>
+                </div>
+                <div id="coursecollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="courseheadingOne">
+                  <div class="panel-body">
+                    <ul class="intro_block">
+                      <li><span>1</span> -<strong> General Awareness</strong> : Detect, identify, bring to someone else's attention.</li>
+                      <li><span>2</span> - <strong>Developing</strong> :  Partially analyze, estimate, perform under supervision.</li>
+                      <li><span>3</span> - <strong>Intermediate</strong> : Understand and discuss the application and implication of changes to processes, policies, and procedures.</li>
+                      <li><span>4</span> - <strong>Advanced</strong> : Fully analyze, resolve, perform independently.</li>
+                      <div class="clearfix"></div>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="text-center">Rate Your Team</h3>
+            
+        <div class="row">
+          <form class="form-validate" #assessmentForm="ngForm" (ngSubmit)="finalSubmit()">
+            <div id="slider" class="flexslider">
+              <ul class="slides">
+                <li *ngFor="let ksa1 of ksaList; let j = index;">
+                  <div class="col-md-4 col-sm-4" *ngFor="let ksa of ksa1.row; let i = index">
+                    <div class="ksa_box" data-toggle="tooltip" data-placement="bottom" title="Choose your Rating">
+                      <div class="ksa_text"><span>{{(6*j)+i+1}}</span> {{ksa.Name}} </div>
+                      <div class="radio_box">
+                        <div class="radio_box_ksa">
+                          <input type="radio" (change)="selectRadio((6*j)+i+1,ksa,i,j)" value="1" #ksa{{j+1}}{{i+1}}_radio="ngModel" [(ngModel)]="ksaList[j].row[i].RatingScaleId" name="ksa{{j+1}}{{i+1}}_radio" id="ksa{{j+1}}{{i+1}}_radio1" required/>
+                          <label for="ksa{{j+1}}{{i+1}}_radio1">1</label>
+                        </div>
+                        <div class="radio_box_ksa">
+                          <input type="radio" (change)="selectRadio((6*j)+i+1,ksa,i,j)" value="2" #ksa{{j+1}}{{i+1}}_radio="ngModel" [(ngModel)]="ksaList[j].row[i].RatingScaleId" name="ksa{{j+1}}{{i+1}}_radio" id="ksa{{j+1}}{{i+1}}_radio2" required/>
+                          <label for="ksa{{j+1}}{{i+1}}_radio2">2</label>
+                        </div>
+                        <div class="radio_box_ksa">
+                          <input type="radio" (change)="selectRadio((6*j)+i+1,ksa,i,j)" value="3" #ksa{{j+1}}{{i+1}}_radio="ngModel" [(ngModel)]="ksaList[j].row[i].RatingScaleId" name="ksa{{j+1}}{{i+1}}_radio" id="ksa{{j+1}}{{i+1}}_radio3" required/>
+                          <label for="ksa{{j+1}}{{i+1}}_radio3">3</label>
+                        </div>
+                        <div class="radio_box_ksa">
+                          <input type="radio" (change)="selectRadio((6*j)+i+1,ksa,i,j)" value="4" #ksa{{j+1}}{{i+1}}_radio="ngModel" [(ngModel)]="ksaList[j].row[i].RatingScaleId" name="ksa{{j+1}}{{i+1}}_radio" id="ksa{{j+1}}{{i+1}}_radio4" required/>
+                          <label for="ksa{{j+1}}{{i+1}}_radio4">4</label>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="text-center" >
+              <div class="tooltip_inline" title="To submit assessment you need to attend all KSAs" data-toggle="tooltip" data-placement="bottom"><div *ngIf="submit_true"><button type="submit" [disabled]="submit_true" class="next_btn assessment_top"><span >Submit</span></button></div></div>
+              <div class="tooltip_inline" title="Submit" data-toggle="tooltip" data-placement="bottom"><button *ngIf="!submit_true" type="submit" [disabled]="submit_true" class="next_btn assessment_top"><span >Submit</span></button></div>
+              <!-- <button class="next_btn" type="submit" onclick="window.location.href = 'thankyou.html'; return false;">Submit</button> --> 
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+
+<!-- Preview Popup -->
+<div class="modal fade" id="PreviewModal" tabindex="-1" role="dialog" aria-labelledby="PreviewModal" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h3 class="modal-title" id="myModalLabel">Assessment Review</h3>
+      </div>
+      <div class="modal-body">
+        <div class="preview_ksa">
+          <table class="table table-bordered table-hover no_margin">
+            <tr>
+              <th class="text-center width_5">No.</th>
+              <th class="width_60">Knowledge, Skills and Abilities</th>
+              <th class="text-left width_30">Selected Rating</th>
+            </tr>
+          </table>
+          <div class="scroll_table">
+            <table class="table table-bordered table-hover no_margin">
+              <ng-container *ngFor="let ksa1 of ksaList; let j = index;">
+                <tr *ngFor="let ksa of ksa1.row; let i = index">
+                  <td class="text-center width_5">{{(6*j)+i+1}}</td>
+                  <td class="width_60">{{ksa.Name}}</td>
+                  <td class="width_30">{{ksa.RatingScaleId}} - <span *ngIf="ksa.RatingScaleId==1">General Awareness</span> <span *ngIf="ksa.RatingScaleId==2">Developing</span> <span *ngIf="ksa.RatingScaleId==3">Intermediate</span> <span *ngIf="ksa.RatingScaleId==4">Advanced</span></td>
+                </tr>
+              </ng-container>
+            </table>
+			
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p><strong>Are you sure you want to submit your assessment ?</strong></p>
+        <button type="button" class="next_btn"  (click)="confirmsubmit()"><span>Yes</span></button>
+        <button type="button" class="red_btn" data-dismiss="modal"><span>No</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Preview Popup --> 

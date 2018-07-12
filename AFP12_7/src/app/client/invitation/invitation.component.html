@@ -1,0 +1,77 @@
+
+
+<!-- Inner Section -->
+<div class="inner_content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        <h2>AFP Corporate Training Skills Assessment</h2>
+        <h1>Registration</h1>
+		  <h5>By Invitation Code only</h5>
+        <div class="clearfix"></div>
+        <div class="col-md-5 col-sm-6 form_bg">
+		<div class="alert alert-{{globals.type}}" role="alert" *ngIf="globals.msgflag">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+<div [innerHTML]="globals.message"></div>
+</div>
+       <!-- <div class="alert alert-danger" role="alert"> -->
+              <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> -->
+              <!-- This is a danger alert—check it out! </div> -->
+			  
+        <form class="form-validate"  #InvitationForm="ngForm" (ngSubmit)="addInvitation(InvitationForm)">
+          <div class="form-group">
+            <label><span>*</span>Email </label>
+             <input type="Email" class="form-control" #EmailAddress="ngModel" email 
+                                  pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [(ngModel)]="InvitationEntity.EmailAddress"
+								  name="EmailAddress" [ngClass]="{red_border: (EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)}"
+								  required/>
+                                  <span class="error_span" *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)">
+                                              
+                                              <span *ngIf="EmailAddress.errors && EmailAddress.errors.required">
+                                                Please enter the email address where you have received invitation code
+                                              </span>
+                                              
+                                              <span *ngIf="EmailAddress.errors && EmailAddress.errors.pattern">
+                                                Please enter valid email address
+                                              </span>
+                                          
+                                </span> 
+          </div>
+          <div class="form-group invitation_text">
+            <label><span>*</span>Invitation Code </label>
+            <div class="clearfix"></div>
+            <div class="minus_text">
+                <input type="text" #code1="ngModel" class="form-control code" name="code1" maxlength="1" [(ngModel)]="InvitationEntity.code1"
+								[ngClass]="{red_border: (code1.dirty && code1.invalid) || (code1.pristine && submitted)}" required/>
+			    <input type="text" #code2="ngModel" class="form-control code" name="code2" maxlength="1"  [(ngModel)]="InvitationEntity.code2"
+								[ngClass]="{red_border: (code2.dirty && code2.invalid) || (code2.pristine && submitted)}" required/>
+			    <input type="text" #code3="ngModel" class="form-control code" name="code3" maxlength="1" [(ngModel)]="InvitationEntity.code3"
+								[ngClass]="{red_border: (code3.dirty && code3.invalid) || (code3.pristine && submitted)}" required/>
+				<input type="text" #code4="ngModel"class="form-control code" maxlength="1" name="code4"  [(ngModel)]="InvitationEntity.code4"
+								[ngClass]="{red_border: (code4.dirty && code4.invalid) || (code4.pristine && submitted)}" required/>						 						 						
+                <input type="text" #code5="ngModel" class="form-control code" name="code5" maxlength="1"  [(ngModel)]="InvitationEntity.code5"
+								[ngClass]="{red_border: (code5.dirty && code5.invalid) || (code5.pristine && submitted)}" required/>
+				<input type="text" #code6="ngModel" class="form-control code" name="code6" maxlength="1" [(ngModel)]="InvitationEntity.code6"
+								[ngClass]="{red_border: (code6.dirty && code6.invalid) || (code6.pristine && submitted)}" required/>
+						<div class="clearfix"></div>				 
+								
+            </div>
+            <span class="error_span" *ngIf="(code1.pristine  && submitted)||(code1.dirty && code1.invalid) || (code2.pristine && submitted)||(code2.dirty && code2.invalid) || (code3.pristine && submitted)||(code3.dirty && code3.invalid) || (code4.pristine && submitted)||(code4.dirty && code4.invalid) || (code5.pristine && submitted)||(code5.dirty && code5.invalid) || (code6.pristine && submitted)||(code6.dirty && code6.invalid) ">
+                                              
+                  <span *ngIf="(code1.errors && code1.errors.required) || (code2.errors && code2.errors.required) || (code3.errors && code3.errors.required) || (code4.errors && code4.errors.required) || (code5.errors && code5.errors.required) || (code6.errors && code6.errors.required)">
+                    Please enter invitation code
+                  </span>
+                 
+            </span> 
+          </div>
+         <!-- <button type="submit" class="btn sub-btn">Next</button> -->
+         <p class="pull-left"> Need Invitation Code? <a href="mailto:info@afponline.com" class="forgot_paswd">Contact us </a></p>
+       <button class="next_btn pull-right" type="submit"><span>Next</span></button>
+        </form>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
